@@ -1,0 +1,36 @@
+<div id="settings-container">
+  <ul id="settings-navbar" class="myrtea-module-navbar">
+    <li [ngClass]="{ 'selected' : currentState === settingsState.MODELSETTINGS }" routerLink="/settings/models">
+      {{ 'settings.model.label'  | translate }}
+    </li>
+    <li [ngClass]="{ 'selected' : currentState === settingsState.FACTSETTINGS }" routerLink="/settings/facts">
+      {{ 'settings.fact.label'  | translate }}
+    </li>
+    <li [ngClass]="{ 'selected' : currentState === settingsState.SITUATIONSETTINGS }" routerLink="/settings/situations">
+      {{ 'settings.situation.label'  | translate }}
+    </li>
+    <li [ngClass]="{ 'selected' : currentState === settingsState.BUSINESSRULESSETTINGS }" routerLink="/settings/business-rules">
+      {{ 'settings.businessrule.label'  | translate }}
+    </li>
+    <li [ngClass]="{ 'selected' : currentState === settingsState.SCHEDULERSETTINGS }" routerLink="/settings/schedulers">
+      {{ 'settings.schedulerjob.label'  | translate }}
+    </li>
+    <li [ngClass]="{ 'selected' : currentState === settingsState.CALENDARSETTINGS }" routerLink="/settings/calendars">
+      {{ 'settings.calendar.label'  | translate }}
+    </li>
+    <!-- <li [ngClass]="{ 'selected' : currentState === settingsState.ROOTCAUSESACTIONSSETTINGS }" routerLink="/settings/root-causes-actions">
+      {{ 'settings.rootcauses.label'  | translate }}
+    </li> -->
+  </ul>
+  <div id="settings-body">
+    <ng-container [ngSwitch]="currentState">
+      <app-model-list *ngSwitchCase="settingsState.MODELSETTINGS"></app-model-list>
+      <app-fact-list *ngSwitchCase="settingsState.FACTSETTINGS"></app-fact-list>
+      <app-situation-list *ngSwitchCase="settingsState.SITUATIONSETTINGS"></app-situation-list>
+      <app-business-rules-list *ngSwitchCase="settingsState.BUSINESSRULESSETTINGS"></app-business-rules-list>
+      <app-scheduler-list *ngSwitchCase="settingsState.SCHEDULERSETTINGS"></app-scheduler-list>
+      <app-calendar-list *ngSwitchCase="settingsState.CALENDARSETTINGS"></app-calendar-list>
+      <!-- <app-root-causes-list *ngSwitchCase="settingsState.ROOTCAUSESACTIONSSETTINGS"></app-root-causes-list> -->
+    </ng-container>
+  </div>
+</div>

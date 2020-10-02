@@ -1,0 +1,917 @@
+{
+  "settings": {
+    "baseline": {
+      "attribute": {
+        "factname": {
+          "help": "MISSING",
+          "label": "Fact name"
+        }
+      },
+      "component": {
+        "addelement": {
+          "add": "Add a baseline",
+          "display": "Display baselines list",
+          "empty": "No baseline selected",
+          "search": "Search a baseline",
+          "selected": "Selected baselines"
+        }
+      }
+    },
+    "businessrule": {
+      "action": {
+        "addparameter": {
+          "label": "Add a new parameter"
+        },
+        "create": {
+          "help": "MISSING ",
+          "label": "Create business rule"
+        }
+      },
+      "attribute": {
+        "calendar": {
+          "label": "Calendar"
+        },
+        "parameters": {
+          "key": {
+            "help": "Missing translation for businessrule.attribute.parameters.key.help",
+            "label": "Key"
+          },
+          "value": {
+            "help": "Missing translation for businessrule.attribute.parameters.value.help",
+            "label": "Value"
+          }
+        },
+        "status": {
+          "help": "MISSING",
+          "label": "Status"
+        }
+      },
+      "component": {
+        "addelement": {
+          "add": "Add a business rules",
+          "display": "Consult business rules list",
+          "empty": "No business rules selected",
+          "search": "Search a business rules",
+          "selected": "Business rules selected"
+        },
+        "deletewindow": {
+          "message": "You are about to withdraw this business rule, if you continue your choice will be final",
+          "title": "Delete of a business rule"
+        },
+        "table": {
+          "empty": "No business rule"
+        }
+      },
+      "label": "Business rules",
+      "section": {
+        "calendar": {
+          "label": "Calendar"
+        },
+        "case": {
+          "help": "MISSING",
+          "label": "Cases composition"
+        },
+        "general": {
+          "help": "MISSING",
+          "label": "General attributes"
+        },
+        "parameters": {
+          "help": "Missing translation for businessrule.section.parameters.help",
+          "label": "Parameters"
+        },
+        "situation": {
+          "help": "MISSING",
+          "label": "Situations composition"
+        }
+      },
+      "title": {
+        "create": "Create business rule",
+        "edit": "Edit business rule {{ name }}"
+      }
+    },
+    "businessruleaction": {
+      "action": {
+        "create": {
+          "help": "missing",
+          "label": "Create action"
+        }
+      },
+      "attribute": {
+        "key": {
+          "help": "missing",
+          "label": "Key"
+        },
+        "value": {
+          "help": "missing",
+          "label": "Value"
+        }
+      },
+      "component": {
+        "table": {
+          "empty": "No action available"
+        }
+      },
+      "title": {
+        "composition": "Actions",
+        "create": "Create action",
+        "edit": "Edit action"
+      }
+    },
+    "businessrulecase": {
+      "action": {
+        "create": {
+          "help": "MISSING",
+          "label": "Create case"
+        }
+      },
+      "attribute": {
+        "condition": {
+          "help": "MISSING",
+          "label": "Condition"
+        }
+      },
+      "component": {
+        "deletewindow": {
+          "message": "You are about to withdraw this case, if you continue your choice will be final",
+          "title": "Delete of a case"
+        },
+        "table": {
+          "empty": "No case"
+        }
+      },
+      "label": "Business rule conditions",
+      "section": {
+        "condition": {
+          "help": "Missing translation for rulecase.section.condition.help",
+          "label": "Condition"
+        },
+        "externaltasks": {
+          "help": "Missing translation for rulecase.section.externalstasks.help",
+          "label": "External tasks"
+        },
+        "internaltasks": {
+          "help": "Missing translation for rulecase.section.internaltasks.help",
+          "label": "Internal tasks"
+        }
+      },
+      "tag": {},
+      "title": {
+        "create": "Create a new business rule condition",
+        "edit": "Edit business rule case {{name}}"
+      }
+    },
+    "businessrulecasetask": {
+      "action": {
+        "createexterntask": {
+          "help": "MISSING",
+          "label": "Create extern task"
+        },
+        "createinterntask": {
+          "help": "MISSING",
+          "label": "Create intern task"
+        }
+      },
+      "attribute": {
+        "executionorder": {
+          "help": "MISSING",
+          "label": "Execution order"
+        },
+        "isnotification": {
+          "help": "Missing translations for businessrulecasetask.attribute.isnotification.help",
+          "label": "Send a notification ?"
+        },
+        "key": {
+          "help": "MISSING",
+          "label": "Key"
+        },
+        "level": {
+          "help": "MISSING",
+          "label": "Level"
+        },
+        "timeout": {
+          "help": "MISSING",
+          "label": "Timeout"
+        },
+        "timezone": {
+          "help": "Timezone",
+          "label": "Timezone"
+        },
+        "type": {
+          "help": "MISSING",
+          "label": "Type"
+        },
+        "value": {
+          "help": "MISSING",
+          "label": "Value"
+        }
+      },
+      "component": {
+        "table": {
+          "empty": "No task available"
+        }
+      },
+      "title": {
+        "create": "Create task",
+        "edit": "Edit task"
+      }
+    },
+    "calendar": {
+      "attribute": {
+        "enabled": {
+          "help": "Missing",
+          "label": "Enabled"
+        }
+      },
+      "component": {
+        "addelement": {
+          "add": "Add a calendar",
+          "display": "Display calendar list",
+          "search": "Search a calendar",
+          "selected": "Selected calendars"
+        },
+        "deletewindow": {
+          "message": "You are about to withdraw this calendar, if you continue your choice will be final",
+          "title": "Delete of a calendar"
+        },
+        "table": {
+          "empty": "No calendars"
+        }
+      },
+      "label": "Calendars",
+      "section": {
+        "general": {
+          "help": "missing",
+          "label": "General attributes"
+        },
+        "period": {
+          "help": "Missing",
+          "label": "Periods"
+        },
+        "unioncalendar": {
+          "help": "Missing",
+          "label": "Union calendars"
+        }
+      },
+      "title": {
+        "create": "Create a calendar",
+        "edit": "Edit a calendar"
+      }
+    },
+    "calendarperiod": {
+      "attribute": {
+        "date": {
+          "help": "Missing",
+          "label": "Date"
+        },
+        "day": {
+          "help": "missing",
+          "label": "Day"
+        },
+        "dayofaweek": {
+          "help": "missing",
+          "label": "Day of a week"
+        },
+        "exclude": {
+          "help": "missing",
+          "label": "exclude"
+        },
+        "hoursofaday": {
+          "help": "missing",
+          "label": "Hours of a day"
+        },
+        "include": {
+          "help": "missing",
+          "label": "Include"
+        },
+        "includeexclude": {
+          "help": "missing",
+          "label": "Include / Exclude"
+        },
+        "month": {
+          "help": "missing",
+          "label": "Month"
+        }
+      },
+      "component": {
+        "table": {
+          "empty": "None period"
+        }
+      },
+      "title": {
+        "create": {
+          "help": "missing",
+          "label": "Create a period"
+        },
+        "edit": {
+          "hep": "Missing",
+          "label": "Edit a period"
+        }
+      }
+    },
+    "fact": {
+      "action": {
+        "addcondition": {
+          "help": "Missing translation for fact.action.addcondition.help",
+          "label": "Add a new condition"
+        },
+        "adddimension": {
+          "help": "Missing translation for fact.action.adddimension.help",
+          "label": "Add a new dimension"
+        },
+        "addparameter": {
+          "help": "Missing translation for fact.action.addparameter.help",
+          "label": "Add a new parameter"
+        },
+        "create": {
+          "help": "Missing translation for fact.action.create.help",
+          "label": "Create a fact"
+        },
+        "test": {
+          "help": "Missing translation for fact.action.test.help",
+          "label": "Test fact"
+        }
+      },
+      "attribute": {
+        "calculationDepth": {
+          "label": "Calculation depth"
+        },
+        "condition": {
+          "groupoperators": "Group operators",
+          "leafoperators": "Leaf operators"
+        },
+        "dimension": {
+          "name": {
+            "help": "Missing translation for fact.attribute.dimension.name.help",
+            "label": "Name"
+          },
+          "operator": {
+            "help": "Missing translation for fact.attribute.dimension.operator.help",
+            "label": "Operator"
+          },
+          "option": {
+            "help": "Missing translation for fact.attribute.dimension.option.help",
+            "label": "Option"
+          },
+          "term": {
+            "help": "Missing translation for fact.attribute.dimension.term.help",
+            "label": "Term"
+          }
+        },
+        "intent": {
+          "help": "MISSSING",
+          "label": "Intent",
+          "name": {
+            "help": "Missing translation for fact.attribute.intent.name.help",
+            "label": "Name"
+          },
+          "operator": {
+            "help": "Missing translation for fact.attribute.intent.operator.help",
+            "label": "Operator"
+          },
+          "script": {
+            "help": "Missing translation for fact.attribute.intent.script.help",
+            "label": "Script"
+          },
+          "term": {
+            "help": "Missing translation for fact.attribute.intent.term.help",
+            "label": "Term"
+          }
+        },
+        "istemplate": {
+          "help": "Missing translation for fact.attribute.istemplate.help",
+          "label": "Is a template ?"
+        },
+        "model": {
+          "help": "Missing translation for fact.attribute.model.help",
+          "label": "Model"
+        },
+        "parameters": {
+          "key": {
+            "help": "Missing translation for fact.attribute.parameters.key.help",
+            "label": "Key"
+          }
+        }
+      },
+      "component": {
+        "addelement": {
+          "add": "Add a fact",
+          "display": "Display facts list",
+          "empty": "No fact selected",
+          "search": "Search a fact",
+          "selected": "Selected facts"
+        },
+        "deletewindow": {
+          "message": "You are about to withdraw this fact, if you continue your choice will be final",
+          "title": "Delete of a fact"
+        },
+        "table": {
+          "empty": "No fact"
+        }
+      },
+      "label": "Facts",
+      "section": {
+        "baselines": {
+          "help": "Missing translation for fact.section.baselines.help",
+          "label": "Baselines"
+        },
+        "condition": {
+          "help": "Missing translation for fact.section.condition.help",
+          "label": "Condition"
+        },
+        "dimensions": {
+          "help": "Missing translation for fact.section.dimensions.help",
+          "label": "Dimensions"
+        },
+        "general": {
+          "help": "Missing translation for fact.section.general.help",
+          "label": "General attributes"
+        },
+        "intent": {
+          "help": "Missing translation for fact.section.intent.help",
+          "label": "Intent"
+        },
+        "parameters": {
+          "help": "Missing translation for fact.section.parameters.help",
+          "label": "Parameters"
+        }
+      },
+      "tag": {},
+      "title": {
+        "create": "Create a new fact",
+        "edit": "Edit fact {{name}}"
+      }
+    },
+    "group": {
+      "action": {
+        "create": {
+          "help": "MISSING",
+          "label": "Create group"
+        }
+      },
+      "attribute": {},
+      "component": {
+        "addelement": {
+          "add": "Add a group",
+          "display": "Display group list",
+          "empty": "No groups selected",
+          "search": "Search a group",
+          "selected": "Selected groups"
+        },
+        "deletewindow": {
+          "message": "You are about to withdraw this security group, if you continue your choice will be final",
+          "title": "Delete of a security group"
+        }
+      },
+      "label": "Security groups",
+      "section": {
+        "general": {
+          "help": "Missing translation for groups.section.general.help",
+          "label": "General attributes"
+        },
+        "users": {
+          "help": "Missing translation for groups.section.users.help",
+          "label": "Users list"
+        }
+      },
+      "tag": {},
+      "title": {
+        "create": "Create a new security group",
+        "edit": "Edit security group {{name}}"
+      }
+    },
+    "model": {
+      "action": {
+        "addfield": {
+          "help": "Missing translation for model.action.addfield.help",
+          "label": "Add a new field"
+        },
+        "addoption": {
+          "help": "Missing translation for model.action.addoption.help",
+          "label": "Add a new option"
+        },
+        "create": {
+          "help": "Missing translation for model.action.create.help",
+          "label": "Create a model"
+        }
+      },
+      "attribute": {
+        "advanced": {
+          "key": {
+            "help": "Missing translation for model.attribute.advanced.key.help",
+            "label": "Key"
+          },
+          "value": {
+            "help": "Missing translation for model.attribute.advanced.value.help",
+            "label": "Value"
+          }
+        },
+        "enablepurge": {
+          "help": "Missing translation for model.attribute.enablepurge.help",
+          "label": "Enable purge"
+        },
+        "field": {
+          "name": {
+            "help": "Missing translation for model.attribute.field.name.help",
+            "label": "Name"
+          },
+          "synonyms": {
+            "help": "Missing translation for model.attribute.field.synonyms.help",
+            "label": "Synonyms"
+          },
+          "type": {
+            "help": "Missing translation for model.attribute.field.type.help",
+            "label": "Type"
+          }
+        },
+        "keepobjectseparation": {
+          "label": "Keep object separation"
+        },
+        "patchmaxindices": {
+          "help": "Missing translation for model.attribute.patchmaxindices.help",
+          "label": "Patch alias max indices"
+        },
+        "purgemaxindices": {
+          "help": "Missing translation for model.attribute.purgemaxindices.help",
+          "label": "Purge max conccurent indices"
+        },
+        "rollcron": {
+          "help": "Missing translation for model.attribute.rollcron.help",
+          "label": "Indices rollover cron"
+        },
+        "rollmode": {
+          "help": "Missing translation for model.attribute.rollmode.help",
+          "label": "Indices rollover mode"
+        },
+        "synonyms": {
+          "help": "Missing translation for model.attribute.synonyms.help",
+          "label": "Synonyms"
+        }
+      },
+      "component": {
+        "deletewindow": {
+          "message": "You are about to withdraw this model, if you continue your choice will be final",
+          "title": "Delete of a model"
+        },
+        "table": {
+          "empty": "No model avaiable"
+        }
+      },
+      "label": "Models",
+      "section": {
+        "advancedoptions": {
+          "help": "Missing translation for model.section.advancedoptions.help",
+          "label": "Advanced Elasticsearch options"
+        },
+        "elasticsearchoptions": {
+          "help": "Missing translation for model.section.elasticsearchoptions.help",
+          "label": "Elasticsearch options"
+        },
+        "fields": {
+          "help": "Missing translation for model.section.fields.help",
+          "label": "Fields"
+        },
+        "general": {
+          "help": "Missing translation for model.section.general.help",
+          "label": "General attributes"
+        }
+      },
+      "tag": {},
+      "title": {
+        "create": "Create a new model",
+        "edit": "Edit model {{name}}"
+      }
+    },
+    "schedulerjob": {
+      "action": {
+        "create": {
+          "label": "Create a scheduler job"
+        }
+      },
+      "attribute": {
+        "cron": {
+          "help": "Missing translation for schedulerjob.attribute.cron.help",
+          "label": "Trigger frequency (cron)"
+        },
+        "from": {
+          "help": "Missing",
+          "label": "From"
+        },
+        "jobtype": {
+          "help": "Missing translation for schedulerjob.attribute.jobtype.help",
+          "label": "Job type"
+        },
+        "recalcul": {
+          "help": "Missing",
+          "label": "Recalcul"
+        },
+        "to": {
+          "help": "Missing",
+          "label": "To"
+        }
+      },
+      "component": {
+        "deletewindow": {
+          "message": "You are about to withdraw this scheduler job, if you continue your choice will be final",
+          "title": "Delete of a scheduler job"
+        },
+        "table": {
+          "empty": "No scheduler job available"
+        }
+      },
+      "label": "Scheduler jobs",
+      "section": {
+        "baselines": {
+          "help": "Missing translation for schedulerjob.section.baselines.help",
+          "label": "Baselines composition"
+        },
+        "facts": {
+          "help": "Missing translation for schedulerjob.section.facts.help",
+          "label": "Facts composition"
+        },
+        "general": {
+          "help": "Missing translation for schedulerjob.section.general.help",
+          "label": "General attributes"
+        },
+        "specific": {
+          "help": "Missing",
+          "label": "Specific attributes"
+        }
+      },
+      "tag": {},
+      "title": {
+        "create": "Create a new scheduler job",
+        "edit": "Edit scheduler job {{name}}"
+      }
+    },
+    "shared": {
+      "action": {
+        "add": "Add",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "create": "Create",
+        "delete": "Delete",
+        "reset": "Reset",
+        "save": "Save",
+        "search": "Search"
+      },
+      "attribute": {
+        "description": {
+          "help": "Missing translation for shared.attribute.description.help",
+          "label": "Description"
+        },
+        "id": {
+          "help": "Missing translation for shared.attribute.id.help",
+          "label": "ID"
+        },
+        "name": {
+          "help": "Missing translation for shared.attribute.name.help",
+          "label": "Name"
+        },
+        "title": {
+          "help": "MISSING",
+          "label": "Title"
+        }
+      },
+      "component": {},
+      "constant": {
+        "day": "Day",
+        "hour": "Hour",
+        "minute": "Minute"
+      },
+      "day": {
+        "friday": "Friday",
+        "monday": "Monday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+        "thursday": "Thursday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday"
+      },
+      "from": "from",
+      "month": {
+        "april": "April",
+        "august": "August",
+        "december": "December",
+        "february": "February",
+        "january": "January",
+        "july": "July",
+        "june": "June",
+        "march": "March",
+        "may": "may",
+        "november": "November",
+        "october": "October",
+        "september": "September"
+      },
+      "section": {},
+      "tag": {},
+      "to": "to"
+    },
+    "situation": {
+      "action": {
+        "addexpressionfact": {
+          "label": "Add a new expression fact"
+        },
+        "addinstance": {
+          "help": "Missing translation for situation.action.addinstance.help",
+          "label": "Add a new instance"
+        },
+        "addparameter": {
+          "help": "Missing translation for situation.action.addparameter.help",
+          "label": "Add a new parameter"
+        },
+        "create": {
+          "help": "MISSING",
+          "label": "Create situation"
+        }
+      },
+      "attribute": {
+        "calendar": {
+          "help": "missing",
+          "label": "Calendar"
+        },
+        "expressionfact": {
+          "expression": {
+            "help": "Expression",
+            "label": "Expression"
+          },
+          "name": {
+            "help": "Name",
+            "label": "Name"
+          }
+        },
+        "istemplate": {
+          "help": "Missing translation for situation.attribute.istemplate.help",
+          "label": "Is a template ?"
+        },
+        "parameters": {
+          "key": {
+            "help": "Missing translation for situation.attribute.parameters.key.help",
+            "label": "Key"
+          },
+          "value": {
+            "help": "Missing translation for situation.attribute.parameters.value.help",
+            "label": "Value"
+          }
+        }
+      },
+      "component": {
+        "addelement": {
+          "add": "Add a situation",
+          "display": "Display situations list",
+          "empty": "No situation selected",
+          "search": "Search a situation",
+          "selected": "Selected situations"
+        },
+        "deletewindow": {
+          "message": "You are about to withdraw this situations, if you continue your choice will be final",
+          "title": "Delete of a situation"
+        },
+        "table": {
+          "empty": "No situation"
+        }
+      },
+      "label": "Situations",
+      "section": {
+        "calendar": {
+          "label": "Calendar"
+        },
+        "expressionfact": {
+          "help": "Expression facts",
+          "label": "Expression facts"
+        },
+        "facts": {
+          "help": "Missing translation for situation.section.facts.help",
+          "label": "Facts composition"
+        },
+        "general": {
+          "help": "MISSING",
+          "label": "General attributes"
+        },
+        "groups": {
+          "help": "Missing translation for situation.section.groups.help",
+          "label": "Security groups attribution"
+        },
+        "instances": {
+          "help": "Missing translation for situation.section.instances.help",
+          "label": "Template instances"
+        },
+        "parameters": {
+          "help": "Missing translation for situation.section.parameters.help",
+          "label": "Parameters"
+        },
+        "rules": {
+          "help": "Missing translation for situation.section.rules.help",
+          "label": "Business rules composition"
+        }
+      },
+      "tag": {},
+      "title": {
+        "create": "Create a new situation",
+        "createinstance": "Create template instance",
+        "edit": "Edit situation {{name}}",
+        "editinstance": "Edit template instance"
+      }
+    },
+    "title": {
+      "administration": "Administration",
+      "settings": "Settings",
+      "usersettings": "User preferences"
+    },
+    "user": {
+      "action": {
+        "create": {
+          "help": "MISSING",
+          "label": "Create user"
+        }
+      },
+      "attribute": {
+        "email": {
+          "help": "Missing translation for user.attribute.email.help",
+          "label": "Email"
+        },
+        "firstname": {
+          "help": "Missing translation for user.attribute.firstname.help",
+          "label": "Firstname"
+        },
+        "grouprole": {
+          "help": "Missing translation for user.attribute.grouprole.help",
+          "label": "Role"
+        },
+        "lastname": {
+          "help": "Missing translation for user.attribute.lastname.help",
+          "label": "Lastname"
+        },
+        "login": {
+          "help": "Missing translation for user.attribute.login.help",
+          "label": "Login"
+        },
+        "password": {
+          "help": "Missing translation for user.attribute.password.help",
+          "label": "Password"
+        },
+        "role": {
+          "help": "Missing translation for user.attribute.role.help",
+          "label": "Role"
+        }
+      },
+      "component": {
+        "addelement": {
+          "add": "Add an user",
+          "display": "Display users list",
+          "empty": "No user selected",
+          "search": "Search an user",
+          "selected": "Selected users"
+        },
+        "deletewindow": {
+          "message": "You are about to withdraw this user, if you continue your choice will be final",
+          "title": "Delete of an user"
+        },
+        "table": {
+          "empty": "No user available"
+        }
+      },
+      "enum": {
+        "role": {
+          "admin": "Admin",
+          "user": "User"
+        }
+      },
+      "label": "Users",
+      "section": {
+        "general": {
+          "help": "Missing translation for user.section.general.help",
+          "label": "Personnal informations"
+        },
+        "groups": {
+          "help": "Missing translation for user.section.groups.help",
+          "label": "Security groups attribution"
+        }
+      },
+      "tag": {},
+      "title": {
+        "create": "Create a new user",
+        "edit": "Edit user {{ name }}"
+      }
+    },
+    "usersettings": {
+      "action": {
+        "chooselanguage": {
+          "help": "MISSING",
+          "label": "Choose a language"
+        }
+      },
+      "attribute": {
+        "country": {
+          "english": "English",
+          "french": "French"
+        }
+      },
+      "section": {
+        "language": {
+          "help": "Missing",
+          "label": "Language"
+        }
+      }
+    }
+  }
+}

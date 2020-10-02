@@ -1,0 +1,39 @@
+@import 'src/styles/colors.scss';
+
+
+.myrtea-input-container {
+  position: relative;
+  margin-bottom: 15px;
+  z-index: 10;
+
+  .suggestions {
+    background-color: white;
+    border: solid 1px $dove-gray;
+    border-radius: 2px;
+    text-align: left;
+    top: 66px;
+    width: 100%;
+    position: absolute;
+    max-height: 20vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    p {
+      margin: 0;
+      padding: 4px 8px;
+      background-color: white;
+
+      mat-icon {
+        color: $primary;
+        margin-right: 8px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: $concrete;
+      }
+
+    }
+  }
+}
+

@@ -1,0 +1,18 @@
+<div class="myrtea-list-container">
+  <div class="myrtea-list-header">
+    <div class="search-container">
+      <input #userInputSearchRootCauses type="text" placeholder="{{ 'settings.shared.action.search' | translate }}"
+        (input)="searchRootCauses(userInputSearchRootCauses.value)">
+      <mat-icon [svgIcon]="icons.SEARCH.name"></mat-icon>
+    </div>
+    <!-- <button class="myrtea-action" routerLink="/settings/root-causes-actions/new"> -->
+    <button class="myrtea-action">
+      <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+      <span>{{ 'settings.rootCauses.createRootCauses' | translate }}</span>
+    </button>
+  </div>
+  <div class="myrtea-list-body">
+    <app-settings-table [data]="tableSettingsData" emptyMessage="{{ 'settings.rootCauses.emptyMessage' | translate }}">
+    </app-settings-table>
+  </div>
+</div>

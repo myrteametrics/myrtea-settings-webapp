@@ -1,0 +1,15 @@
+<div class="myrtea-administraion-container">
+  <div class="myrtea-administration-header">
+    <div class="search-container">
+      <input #userInputSearchGroup type="text" placeholder="{{ 'settings.shared.action.search' | translate }}"
+        (input)="searchGroup(userInputSearchGroup.value)">
+      <mat-icon [svgIcon]="icons.SEARCH.name"></mat-icon>
+    </div>
+    <button class="myrtea-action" routerLink="/administration/security-groups/new">
+      <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+      <span>{{ 'settings.group.action.create.label' | translate }}</span>
+    </button>
+  </div>
+  <app-settings-table [data]="tableSettingsData" emptyMessage="{{ 'settings.group.component.addelement.empty' | translate}}">
+  </app-settings-table>
+</div>

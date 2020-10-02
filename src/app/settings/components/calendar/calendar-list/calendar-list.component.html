@@ -1,0 +1,17 @@
+<div class="myrtea-list-container">
+  <div class="myrtea-list-header">
+    <div class="search-container">
+      <input #userInputSearchCalendar type="text" placeholder="{{ 'settings.shared.action.search' | translate }}"
+        (input)="searchCalendar(userInputSearchCalendar.value)">
+      <mat-icon [svgIcon]="icons.SEARCH.name"></mat-icon>
+    </div>
+    <button class="myrtea-action" routerLink="/settings/calendars/new">
+      <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+      <span>{{ 'settings.calendar.title.create' | translate }}</span>
+    </button>
+  </div>
+  <div class="myrtea-list-body">
+    <app-settings-table [data]="tableSettingsData" emptyMessage="{{ 'settings.calendar.component.table.empty' | translate }}">
+    </app-settings-table>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+@import 'src/styles/colors.scss';
+@import 'src/styles/constants.scss';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: $concrete;
+  font-family: 'Nunito', sans-serif !important;
+
+  .content-wrapper {
+    margin: 0 0 0 $navbar-width;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+}
+
+* {
+  font-family: 'Nunito', sans-serif !important;
+}
+
+mat-expansion-panel-header {
+  height: 38px !important;
+}
+
+.mat-tooltip {
+  text-overflow: initial !important;
+  max-width: unset !important;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+mat-icon.error {
+  fill: $red !important;
+}
+mat-icon.warning {
+  fill: #ffa056 !important;
+}
+mat-icon.ok, mat-icon.check {
+  fill: $pastel-green !important;
+}
+mat-icon.information {
+  fill: $thumbs-up  !important;
+}
+mat-icon.unknown {
+  fill: $abbey !important;
+}

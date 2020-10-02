@@ -1,0 +1,35 @@
+@import 'src/styles/colors.scss';
+
+.confirmation-pop-up-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+
+  .btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .confirmation-pop-up-title {
+    margin: 0;
+  }
+
+  .confirmation-pop-up-content {
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.38;
+    letter-spacing: 0.69px;
+    color: $dove-gray;
+    text-align: left;
+  }
+
+  .confirmation-pop-up-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+
+    button.myrtea-cancel {
+      margin-right: 16px;
+    }
+  }
+}

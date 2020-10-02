@@ -1,0 +1,98 @@
+<div id="user-edition-container" *ngIf="formUser && user" class="myrtea-settings-page">
+  <app-settings-control-bar class="myrtea-settings-page-control-bar"
+    controlTitle="{{ creationMode ? 'settings.user.title.create' : 'settings.user.title.edit' | translate : { name: userName } }}"
+    [updateModifiedState]="formIsValid()" [noMoreOptions]="creationMode" (save)="save()" (return)="return()" (cancel)="cancel()"
+    (delete)="delete()">
+  </app-settings-control-bar>
+  <div class="myrtea-settings-page-body">
+    <div class="myrtea-form-section form-group">
+      <form class="myrtea-form" [formGroup]="formUser">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.user.section.general.label' | translate }}<mat-icon
+            matTooltip="{{ 'settings.user.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label class="myrtea-label" for="userRole">{{ 'settings.user.attribute.role.label' | translate }}
+              <mat-icon matTooltip="{{ 'settings.user.attribute.role.help' | translate }}" matTooltipPosition="below"
+                [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+              </mat-icon>
+            </label>
+            <select id="userRole" class="custom-select myrtea-select" formControlName="role">
+              <option value="2">{{ 'settings.user.enum.role.user' | translate }}
+              </option>
+              <option value="1">{{ 'settings.user.enum.role.admin' | translate }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label class="myrtea-label" for="userLogin">
+              {{ 'settings.user.attribute.login.label' | translate }}
+              <mat-icon matTooltip="{{ 'settings.user.attribute.login.help' | translate }}" matTooltipPosition="below"
+                [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+              </mat-icon>
+            </label>
+            <input type="text" formControlName="login" class="form-control myrtea-text-input" id="userLogin">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label class="myrtea-label" for="userFirstName">
+              {{ 'settings.user.attribute.firstname.label' | translate }}
+              <mat-icon matTooltip="{{ 'settings.user.attribute.firstname.help' | translate }}" matTooltipPosition="below"
+                [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+              </mat-icon>
+            </label>
+            <input type="text" formControlName="firstName" class="form-control myrtea-text-input" id="userFirstName">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label class="myrtea-label" for="userLastName">
+              {{ 'settings.user.attribute.lastname.label' | translate }}
+              <mat-icon matTooltip="{{ 'settings.user.attribute.lastname.help' | translate }}" matTooltipPosition="below"
+                [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+              </mat-icon>
+            </label>
+            <input type="text" formControlName="lastName" class="form-control myrtea-text-input" id="userLastName">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label class="myrtea-label" for="userEmail">
+              {{ 'settings.user.attribute.email.label' | translate }}
+              <mat-icon matTooltip="{{ 'settings.user.attribute.email.help' | translate }}" matTooltipPosition="below"
+                [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+              </mat-icon>
+            </label>
+            <input type="email" formControlName="email" id="userEmail" class="form-control myrtea-text-input">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label class="myrtea-label" for="userPassword" *ngIf="creationMode">
+              {{ 'settings.user.attribute.password.label' | translate }}
+              <mat-icon matTooltip="{{ 'settings.user.attribute.password.help' | translate }}" matTooltipPosition="below"
+                [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+              </mat-icon>
+            </label>
+            <input class="form-control myrtea-text-input" id="userPassword" type="password" *ngIf="creationMode" formControlName="password">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="myrtea-form-section form-group">
+      <div class="h2 myrtea-form-section-title">
+        {{ 'settings.user.section.groups.label' | translate }} <mat-icon matTooltip="{{ 'settings.user.section.groups.help' | translate }}"
+          matTooltipPosition="below" [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+        </mat-icon>
+      </div>
+      <app-security-group-composition *ngIf="user && groupIds" [groupIdsInElement]="groupIds" (isDirtyEmitter)="isDirty = $event"
+        #groupComposition>
+      </app-security-group-composition>
+    </div>
+  </div>

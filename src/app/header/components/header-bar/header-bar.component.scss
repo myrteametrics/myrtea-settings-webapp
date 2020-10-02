@@ -1,0 +1,28 @@
+@import 'src/styles/constants.scss';
+@import 'src/styles/colors.scss';
+
+#header-bar {
+  width: 100%;
+  height: $header-height;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  align-items: center;
+
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.36;
+    text-align: left;
+    color: $dove-gray;
+    margin: 0;
+  }
+
+  #client-logo {
+    img {
+      height: calc(#{$header-height} - 3vh);
+    }
+  }
+}

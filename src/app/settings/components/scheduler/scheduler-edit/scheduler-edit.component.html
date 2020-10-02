@@ -1,0 +1,128 @@
+<div class="myrtea-settings-page">
+  <app-settings-control-bar class="myrtea-settings-page-control-bar"
+    controlTitle="{{ creationMode ? 'settings.schedulerjob.title.create' : 'settings.schedulerjob.title.edit' | translate : {'name': schedulerName } }}"
+    [updateModifiedState]="formIsValid()" [noMoreOptions]="creationMode" (save)="save()" (return)="return()" (cancel)="cancel()"
+    (delete)="delete()">
+  </app-settings-control-bar>
+  <div class="myrtea-settings-page-body">
+    <form class="needs-validation" novalidate [formGroup]="formScheduler">
+      <div class="myrtea-form-section">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.schedulerjob.section.general.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.schedulerjob.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row" *ngIf="!creationMode">
+            <div class="form-group col-md-4">
+              <label class="myrtea-label" for="schedulerId">
+                {{ 'settings.shared.attribute.id.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.id.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input class="form-control myrtea-text-input" type="text" formControlName="id" id="schedulerId">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label class="myrtea-label" for="schedulerName">
+                {{ 'settings.shared.attribute.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.name.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input class="form-control myrtea-text-input" type="text" formControlName="name" id="schedulerName">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label class="myrtea-label" for="schedulerCronexpr">
+                {{ 'settings.schedulerjob.attribute.cron.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.schedulerjob.attribute.cron.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input class="form-control myrtea-text-input" type="text" formControlName="cronexpr" id="schedulerCronexpr">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4">
+              <label for="schedulerJobtype" class="myrtea-label">
+                {{ 'settings.schedulerjob.attribute.jobtype.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.schedulerjob.attribute.jobtype.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <select id="schedulerJobtype" class="custom-select myrtea-select" formControlName="jobtype">
+                <option [value]="SchedulerJobType.Fact">{{ SchedulerJobType.Fact | titlecase }}</option>
+                <option [value]="SchedulerJobType.Baseline">{{ SchedulerJobType.Baseline | titlecase }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="myrtea-form-group" *ngIf="formScheduler.get('jobtype').value === SchedulerJobType.Fact">
+            <div class="custom-control custom-switch myrtea-switch">
+              <input formControlName="recalcul" type="checkbox" class="custom-control-input" id="recalcul">
+              <label class="custom-control-label myrtea-label" for="recalcul">
+                {{ 'settings.schedulerjob.attribute.recalcul.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.schedulerjob.attribute.recalcul.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="myrtea-form-section"
+        *ngIf="formScheduler.get('recalcul').value && formScheduler.get('jobtype').value === SchedulerJobType.Fact">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.schedulerjob.section.specific.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.schedulerjob.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </div>
+        <form [formGroup]="schedulerJobFactForm">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label class="myrtea-label" for="schedulerJobFactFrom">
+                {{ 'settings.schedulerjob.attribute.from.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.schedulerjob.attribute.from.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input class="form-control myrtea-text-input" type="text" formControlName="schedulerJobFactFrom" id="schedulerJobFactFrom">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label class="myrtea-label" for="schedulerJobFactTo">
+                {{ 'settings.schedulerjob.attribute.to.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.schedulerjob.attribute.to.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input class="form-control myrtea-text-input" type="text" formControlName="schedulerJobFactTo" id="schedulerJobFactTo">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="myrtea-form-section" *ngIf="formScheduler && formScheduler.get('jobtype').value === SchedulerJobType.Fact">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.schedulerjob.section.facts.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.schedulerjob.section.facts.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <app-fact-composition #factComposition *ngIf="scheduler" [factIdsInElement]="scheduler.job.factIds"
+            (isDirtyEmitter)="isDirty = $event">
+          </app-fact-composition>
+        </div>
+      </div>
+      <div class="myrtea-form-section" *ngIf="formScheduler && formScheduler.get('jobtype').value === SchedulerJobType.Baseline">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.schedulerjob.section.baselines.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.schedulerjob.section.baselines.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <app-scheduler-baseline-composition #baselineComposition [schedulerJobBaseline]="getJob()" (isDirtyEmitter)="isDirty = $event">
+          </app-scheduler-baseline-composition>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="confirmation-pop-up-container">
+  <h1 class="confirmation-pop-up-title">
+    {{ data.title | translate }}
+  </h1>
+  <p class="confirmation-pop-up-content">
+    {{ data.content | translate }}
+  </p>
+  <div class="confirmation-pop-up-actions">
+    <button class="btn myrtea-cancel" (click)="closeDialog()">{{ 'settings.shared.action.cancel' | translate }}</button>
+    <button class="myrtea-validate" (click)="validate()">{{ 'settings.shared.action.confirm' | translate }}</button>
+  </div>
+</div>

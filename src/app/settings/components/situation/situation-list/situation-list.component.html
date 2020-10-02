@@ -1,0 +1,18 @@
+<div class="myrtea-list-container">
+  <div class="myrtea-list-header">
+    <div class="search-container">
+      <input #userInputSearchSituation type="text" placeholder="{{ 'settings.shared.action.search' | translate }}"
+        (input)="searchSituation(userInputSearchSituation.value)">
+      <mat-icon [svgIcon]="icons.SEARCH.name"></mat-icon>
+    </div>
+    <button class="myrtea-action" routerLink="/settings/situations/new">
+      <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+      <span>{{ 'settings.situation.action.create.label' | translate }}</span>
+    </button>
+  </div>
+  <div class="myrtea-list-body">
+    <app-settings-table [data]="tableSettingsData" (displayObjectEmitter)="displaySituation($event)"
+      emptyMessage="{{ 'settings.situation.component.addelement.empty' | translate }}" (deleteObjectEmitter)="deleteSituation($event)">
+    </app-settings-table>
+  </div>
+</div>

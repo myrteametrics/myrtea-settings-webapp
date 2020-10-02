@@ -1,0 +1,30 @@
+<div class="settings-table-container">
+  <div class="settings-header-container">
+    <div class="settings-table-header">
+      <p *ngFor="let legend of data.header" [ngClass]="joinClasses(legend)">
+        <span>{{ legend.text | translate }}</span>
+      </p>
+    </div>
+  </div>
+  <div *ngIf="data.rows.length === 0" class="settings-table-row">
+    <p class="empty-message">
+      {{ emptyMessage }}
+    </p>
+  </div>
+  <div id="settings-table-rows">
+    <div class="settings-row" *ngFor="let row of data.rows; let i = index">
+      <div class="settings-table-row" [ngClass]="{ 'cursor-hover' : row.click }" (click)="onRowClick(row)">
+        <p *ngFor="let attribute of row.rowElements" [ngClass]="joinClasses(attribute)">
+          <mat-icon (click)="onElementInRowClick(row.objectId, attribute, $event)" [svgIcon]="attribute.icon" *ngIf="attribute?.icon"
+            matTooltip="{{attribute?.tooltip }}" matTooltipPosition="above">
+          </mat-icon>
+          <span (click)="onElementInRowClick(row.objectId, attribute, $event)" *ngIf="attribute?.text">{{ attribute.text }}</span>
+        </p>
+      </div>
+      <div class="ordered-panel" *ngIf="data.ordered">
+        <mat-icon (click)="upElement(i)" [svgIcon]="icons.ARROW_UP.name"></mat-icon>
+        <mat-icon (click)="dowElement(i)" [svgIcon]="icons.ARROW_DOWN.name"></mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

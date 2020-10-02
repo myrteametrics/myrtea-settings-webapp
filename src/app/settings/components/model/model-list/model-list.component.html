@@ -1,0 +1,17 @@
+<div class="myrtea-list-container">
+  <div class="myrtea-list-header">
+    <div class="search-container">
+      <input #userInputSearchModel type="text" placeholder="{{ 'settings.shared.action.search' | translate }}"
+        (input)="searchModel(userInputSearchModel.value)">
+      <mat-icon [svgIcon]="icons.SEARCH.name"></mat-icon>
+    </div>
+    <button class="myrtea-action" routerLink="/settings/models/new">
+      <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+      <span>{{ 'settings.model.action.create.label' | translate }}</span>
+    </button>
+  </div>
+  <div class="myrtea-list-body">
+    <app-settings-table [data]="tableSettingsData" emptyMessage="{{ 'settings.model.component.table.empty' | translate }}">
+    </app-settings-table>
+  </div>
+</div>

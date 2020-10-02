@@ -1,0 +1,275 @@
+<div class="myrtea-settings-page">
+  <app-settings-control-bar class="myrtea-settings-page-control-bar"
+    controlTitle="{{ creationMode ? 'settings.fact.title.create' : 'settings.fact.title.edit' | translate : {'name': factName } }}"
+    [noMoreOptions]="creationMode" [updateModifiedState]="factEditForm && factEditForm.dirty" (return)="return()" (save)="save()"
+    (cancel)="cancel()" (delete)="delete()">
+  </app-settings-control-bar>
+
+  <div class="myrtea-settings-page-body">
+    <form [ngClass]="{'was-validated': wasValidated}" class="needs-validation" novalidate [formGroup]="factEditForm">
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.fact.section.general.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.fact.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-1 form-group" *ngIf="!creationMode">
+              <label class="myrtea-label" for="id">
+                {{ 'settings.shared.attribute.id.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.id.label' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <input type="text" id="id" class="form-control myrtea-text-input" formControlName="id">
+            </div>
+            <div [ngClass]="{'col-md-3' : !creationMode, 'col-md-4': creationMode}" class="form-group">
+              <label class="myrtea-label" for="name">
+                {{ 'settings.shared.attribute.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.name.label' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <input type="text" id="name" class="form-control myrtea-text-input" formControlName="name" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 form-group">
+              <label class="myrtea-label" for="model">
+                {{ 'settings.fact.attribute.model.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.model.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <select id="model" class="custom-select myrtea-select" formControlName="model" required>
+                <option value=""></option>
+                <option *ngFor="let model of models" [value]="model.name">{{ model.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 form-group">
+              <label class="myrtea-label" for="calculationDepth">
+                {{ 'settings.fact.attribute.calculationDepth.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.calculationDepth.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <input type="number" id="form-control-calculationDepth" class="form-control myrtea-text-input" formControlName="calculationDepth">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="pl-2 col-md-4">
+              <div class="custom-control custom-switch myrtea-switch">
+                <input type="checkbox" class="custom-control-input" id="istemplate" formControlName="isTemplate">
+                <label class="custom-control-label" for="istemplate">
+                  {{ 'settings.fact.attribute.istemplate.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.fact.attribute.istemplate.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group" *ngIf="factEditForm.get('isTemplate').value">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.fact.section.parameters.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.fact.section.parameters.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-3">
+              <label class="myrtea-label" for="form-control-parameters-key">
+                {{ 'settings.fact.attribute.parameters.key.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.parameters.key.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+          </div>
+          <ng-container *ngFor="let fieldForm of factEditForm.get('parameters')['controls']; let i = index">
+            <div class="mb-1 form-row" [formGroup]="fieldForm">
+              <div class="col-md-3">
+                <input type="text" id="form-control-parameters-key" class="form-control myrtea-text-input" formControlName="key">
+                <!-- <div class="valid-feedback">{{ 'settings.fact.attribute.parameters.key.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.fact.attribute.parameters.key.invalid' | translate }}</div> -->
+              </div>
+              <div>
+                <div class="pl-0 myrtea-add-section" (click)="deleteParameter(fieldForm, i)">
+                  <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="pl-0 myrtea-add-section" (click)="addNewParameter(factEditForm)">
+            <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+            <span class="px-2">{{ 'settings.fact.action.addparameter.label' | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.fact.section.intent.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.fact.section.intent.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row" [formGroup]="factEditForm.controls.intent">
+            <div class="col-md-2">
+              <label class="myrtea-label">
+                {{ 'settings.fact.attribute.intent.operator.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.intent.operator.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <select class="custom-select myrtea-select" formControlName="operator" required>
+                <option value=""></option>
+                <option *ngFor="let operator of factIntentOperator" [value]="operator">{{ operator }}</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label class="myrtea-label">
+                {{ 'settings.fact.attribute.intent.term.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.intent.term.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <select *ngIf="!factEditForm.controls.intent.value.script" class="custom-select myrtea-select" formControlName="term"
+                required>
+                <option value=""></option>
+                <optgroup label="{{ 'settings.fact.attribute.intent.model' | translate }}">
+                  <option value="{{ factEditForm.get('model').value }}">{{ factEditForm.controls.model.value }}</option>
+                </optgroup>
+                <optgroup label="{{ 'settings.fact.attribute.intent.modelfields' | translate }}">
+                  <option *ngFor="let modelTerm of modelTerms" [value]="modelTerm.name">{{ modelTerm.name }}</option>
+                </optgroup>
+              </select>
+              <input *ngIf="factEditForm.controls.intent.value.script" type="text" class="form-control myrtea-text-input"
+                formControlName="term" required>
+            </div>
+            <div class="col-md-2 pt-2">
+              <label class="myrtea-label"></label>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" [value]="factEditForm.controls.intent.value.script"
+                  formControlName="script" id="customCheck1">
+                <label class="custom-control-label"
+                  for="customCheck1">{{ 'settings.fact.attribute.intent.script.label' | translate }}</label>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label class="myrtea-label">
+                {{ 'settings.fact.attribute.intent.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.intent.name.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <input type="text" class="form-control myrtea-text-input" formControlName="name" required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.fact.section.dimensions.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.fact.section.dimensions.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div *ngIf="factEditForm.get('dimensions').value && factEditForm.get('dimensions').value.length > 0" class="form-row">
+            <div class="col-md-2">
+              <label class="myrtea-label">
+                {{ 'settings.fact.attribute.dimension.operator.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.dimension.operator.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-2">
+              <label class="myrtea-label">
+                {{ 'settings.fact.attribute.dimension.term.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.dimension.term.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-2">
+              <label class="myrtea-label">
+                {{ 'settings.fact.attribute.dimension.option.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.dimension.option.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-3">
+              <label class="myrtea-label">
+                {{ 'settings.fact.attribute.dimension.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.fact.attribute.dimension.name.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+          </div>
+          <ng-container *ngFor="let dimensionFormGroup of getDimensions().controls; let i = index">
+            <div class="mb-1 form-row" [formGroup]="dimensionFormGroup">
+              <div class="col-md-2">
+                <select class="custom-select myrtea-select" formControlName="operator" required>
+                  <option value=""></option>
+                  <option *ngFor="let operator of factDimensionOperator" [value]="operator">{{ operator }}</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <select class="custom-select myrtea-select" formControlName="term" required>
+                  <option value=""></option>
+                  <option *ngFor="let modelTerm of modelTerms" [value]="modelTerm.name">{{ modelTerm.name }}</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control myrtea-text-input" formControlName="option">
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control myrtea-text-input" formControlName="name">
+              </div>
+              <div class="col-md-1">
+                <mat-icon class="myrtea-delete-button" [svgIcon]="icons.TRASH.name" (click)="removeFormDimension(i)">
+                </mat-icon>
+              </div>
+            </div>
+          </ng-container>
+          <div class="pl-0 myrtea-add-section" (click)="addFormDimension()">
+            <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+            <span class="px-2">{{ 'settings.fact.action.adddimension.label' | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.fact.section.condition.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.fact.section.condition.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <app-fact-condition *ngIf="factEditForm.get('condition')" [conditionFormGroup]="factEditForm.get('condition')"
+            [modelTerms]="modelTerms">
+          </app-fact-condition>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- <div class="mb-4 float-right">
+    <button class="myrtea-validate" (click)="testFact()">{{ 'settings.fact.action.test.label' | translate }}</button>
+  </div> -->
+</div>

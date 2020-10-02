@@ -1,0 +1,30 @@
+{
+  "sidenav": {
+    "administration": {
+      "label": "Administration",
+      "tooltip": "Administration"
+    },
+    "filter": "Filtrer",
+    "history": "Historique",
+    "home": {
+      "tooltip": "Accueil"
+    },
+    "logout": "Déconnexion",
+    "markRead": "Marquer comme lu",
+    "markUnRead": "Marquer comme non lu",
+    "new-case": "Nouveau cas à traité",
+    "noneFilter": "Aucun filtre",
+    "noneOrder": "Aucun classement",
+    "notificationHistory": "Historique des notifications",
+    "notifications": {
+      "tooltip": "Notifications"
+    },
+    "orderBy": "Trier par",
+    "recentNotifications": "Notifications récentes",
+    "search": "Rechercher",
+    "settings": {
+      "tooltip": "Paramétrage"
+    },
+    "userAccount": "Compte utilisateur"
+  }
+}

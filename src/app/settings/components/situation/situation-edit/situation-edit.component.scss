@@ -1,0 +1,28 @@
+@import 'src/styles/constants.scss';
+
+#situations-edition {
+  display: flex;
+  margin-bottom: 24px;
+
+  #general-attributs {
+    margin-right: 24px;
+    form {
+      display: flex;
+      flex-direction: column;
+      input {
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  #general-attributs,
+  #attribution {
+    width: 50%;
+
+    .myrtea-input-with-suggestions {
+      width: 100%;
+    }
+  }
+}
+
+

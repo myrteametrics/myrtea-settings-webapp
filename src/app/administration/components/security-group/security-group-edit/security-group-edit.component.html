@@ -1,0 +1,41 @@
+<div class="myrtea-settings-page">
+  <app-settings-control-bar class="myrtea-settings-page-control-bar"
+    controlTitle="{{ creationMode ? 'settings.group.title.create' : 'settings.group.title.edit' | translate : { name: group?.name } }}"
+    [updateModifiedState]="groupIsModified()" [noMoreOptions]="creationMode" (save)="saveGroup()" (return)="return()" (cancel)="cancel()"
+    (delete)="deleteGroup()"></app-settings-control-bar>
+  <div class="myrtea-settings-page-body">
+    <div class="myrtea-form-section form-group">
+      <div class="h2 myrtea-form-section-title">
+        {{ 'settings.group.section.general.label' | translate }}<mat-icon
+          matTooltip="{{ 'settings.group.section.general.help' | translate }}" matTooltipPosition="below"
+          [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+      </div>
+      <form [formGroup]="formGroup">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label class="myrtea-label" for="name">{{ 'settings.shared.attribute.name.label' | translate }}
+              <mat-icon matTooltip="{{ 'settings.shared.attribute.name.help' | translate }}" matTooltipPosition="below"
+                [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+              </mat-icon>
+            </label>
+            <input class="form-control myrtea-text-input" type="text" (input)="userChange = true" formControlName="name" id="name">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="myrtea-form-section form-group">
+      <div class="h2 myrtea-form-section-title">
+        {{ 'settings.group.section.users.label' | translate }}<mat-icon matTooltip="{{ 'settings.group.section.users.help' | translate }}"
+          matTooltipPosition="below" [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+      </div>
+      <div class="myrtea-input-with-suggestions">
+        <app-input-with-suggestions [data]="inputWithSuggestionsData" (selectEmitter)="addUserById($event)">
+        </app-input-with-suggestions>
+        <a class="myrtea-link" (click)="displayUsersSelectionWindow()">{{ 'settings.user.component.addelement.display' | translate }}</a>
+      </div>
+      <app-settings-table [data]="tableSettingsData" emptyMessage="{{ 'settings.user.component.table.empty' | translate }}">
+      </app-settings-table>
+    </div>
+  </div>
+
+</div>

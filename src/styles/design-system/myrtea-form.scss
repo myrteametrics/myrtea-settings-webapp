@@ -1,0 +1,176 @@
+@import 'src/styles/colors.scss';
+
+/*
+  Styles relatif to user's input and associated elements (label, title's form ...)
+*/
+
+.myrtea-form-section {
+  margin-top: 10px;
+
+  .myrtea-form-section-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: left;
+    color: $primary;
+    border-bottom: solid 1px $primary;
+  }
+}
+
+.myrtea-text-input {
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+
+  ::placeholder {
+    color: $silver;
+    opacity: 1;
+    /* Firefox */
+  }
+
+  &:disabled {
+    border: solid 1px $silver;
+    color: $silver;
+  }
+
+  &:focus {
+    background-color: $white;
+    border: solid 1px $primary;
+  }
+
+  &.ng-invalid {
+    &.ng-touched {
+      border: solid 2px $red;
+    }
+  }
+}
+
+.myrtea-form {
+  display: flex;
+  flex-direction: column;
+
+  .myrtea-checkbox {
+    height: 20px;
+    width: 20px;
+  }
+
+  .myrtea-select {
+    font-size: 0.875rem;
+    border-radius: 0.375rem;
+
+    ::placeholder {
+      color: $silver;
+      opacity: 1;
+      /* Firefox */
+    }
+
+    &:disabled {
+      border: solid 1px $silver;
+      color: $silver;
+    }
+
+    &:focus {
+      background-color: $white;
+      border: solid 1px $primary;
+    }
+
+    &.ng-invalid {
+      &.ng-touched {
+        border: solid 2px $red;
+      }
+    }
+  }
+
+  .myrtea-time {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin-bottom: 16px;
+
+    p {
+      margin: 0 8px;
+    }
+
+    .myrtea-text-input {
+      margin-right: 8px;
+
+      &.myrtea-days {
+        width: 4em;
+      }
+
+      &.myrtea-hours {
+        width: 4em;
+        margin-right: 4px;
+      }
+
+      &.myrtea-minutes {
+        width: 4em;
+        margin-left: 4px;
+      }
+    }
+
+    .myrtea-label {
+      margin-right: 16px;
+    }
+
+    .myrtea-select {
+      max-width: 9em;
+    }
+  }
+
+  // input,
+  // select {
+  //   margin-bottom: 8px;
+  // }
+}
+
+.myrtea-label {
+  font-size: 13px;
+  line-height: 1.38;
+  letter-spacing: 0.35px;
+  color: $abbey;
+  margin: 0 0 5px 0;
+}
+
+.myrtea-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.myrtea-input-with-suggestions {
+  display: flex;
+  align-items: center;
+
+  app-input-with-suggestions {
+    width: 30%;
+    margin-right: 16px;
+  }
+}
+
+
+.search-container {
+  position: relative;
+
+  input {
+    background-color: transparent;
+    padding: 12px 36px 12px 18px;
+    border: 1px solid $dove-gray;
+    border-radius: 32px;
+    font-size: 14px;
+    line-height: 1.36;
+    letter-spacing: 0.38px;
+    color: $ship-gray;
+
+    &:focus {
+      border: 1px solid $primary;
+    }
+
+  }
+
+  mat-icon {
+    position: absolute !important;
+    margin: 8px 10px 0 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    color: $dove-gray;
+  }
+}

@@ -1,0 +1,116 @@
+<div class="myrtea-window">
+
+  <div class="myrtea-window-header">
+    <h2>{{ (creationMode ? 'settings.situation.title.createinstance' : 'settings.situation.title.editinstance') | translate }}</h2>
+    <mat-icon [svgIcon]="icons.CROSS.name" (click)="closeDialog()"></mat-icon>
+  </div>
+
+  <div class="myrtea-window-body">
+
+    <form [ngClass]="{'was-validated': wasValidated}" class="needs-validation" novalidate [formGroup]="instanceEditForm">
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">{{ 'settings.situation.section.general.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-6" class="form-group">
+              <label class="myrtea-label" for="situation-name">
+                {{ 'settings.shared.attribute.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.name.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input type="text" id="situation-name" class="form-control myrtea-text-input" formControlName="name" required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.calendar.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.calendar.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-4 form-group">
+              <label class="myrtea-label" for="calendar">
+                {{ 'settings.situation.attribute.calendar.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.situation.attribute.calendar.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <select id="calendar" class="custom-select myrtea-select" formControlName="calendar">
+                <option value=""></option>
+                <option *ngFor="let calendar of calendars" [value]="calendar.id">{{ calendar.id }} - {{ calendar.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group myrtea-form-section">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.parameters.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.parameters.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-3">
+              <label class="myrtea-label" for="form-control-parameters-key">
+                {{ 'settings.situation.attribute.parameters.key.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.situation.attribute.parameters.key.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-3">
+              <label class="myrtea-label" for="form-control-parameters-value">
+                {{ 'settings.situation.attribute.parameters.value.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.situation.attribute.parameters.value.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+          </div>
+          <ng-container *ngFor="let fieldForm of instanceEditForm.get('parameters')['controls']; let i = index">
+            <div class="mb-1 form-row" [formGroup]="fieldForm">
+              <div class="col-md-3">
+                <input type="text" id="form-control-parameters-key" class="form-control myrtea-text-input" formControlName="key" required>
+                <div class="valid-feedback">{{ 'settings.situation.parameters.key.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.situation.parameters.key.invalid' | translate }}</div>
+              </div>
+              <div class="col-md-3">
+                <input type="text" id="form-control-parameters-value" class="form-control myrtea-text-input" formControlName="value"
+                  required>
+                <div class="valid-feedback">{{ 'settings.situation.parameters.value.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.situation.parameters.value.invalid' | translate }}</div>
+              </div>
+              <div>
+                <div class="pl-0 myrtea-add-section" (click)="deleteParameter(fieldForm, i)">
+                  <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="pl-0 myrtea-add-section" (click)="addNewParameter(instanceEditForm)">
+            <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+            <span class="px-2">{{ 'settings.situation.action.addparameter.label' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="myrtea-window-actions">
+    <button class="btn myrtea-cancel" (click)="closeDialog()">{{ 'settings.shared.action.cancel' | translate }}</button>
+    <button class="myrtea-validate" (click)="confirmSelection()">{{ 'settings.shared.action.add' | translate }}</button>
+  </div>
+</div>

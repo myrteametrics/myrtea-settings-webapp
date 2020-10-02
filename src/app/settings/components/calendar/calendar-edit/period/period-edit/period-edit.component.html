@@ -1,0 +1,121 @@
+<div class="myrtea-window">
+  <div class="myrtea-window-header">
+    <h2>
+      {{ (creationMode ? 'settings.calendarperiod.title.create.label' : 'settings.calendarperiod.title.edit.label')  | translate }}
+    </h2>
+    <mat-icon [svgIcon]="icons.CROSS.name" (click)="closeDialog()"></mat-icon>
+  </div>
+  <div class="myrtea-window-body">
+    <form [formGroup]="periodForm" class="myrtea-form">
+
+      <div class="form-row myrtea-timezone">
+        <label class="myrtea-label col-3" for="monthsOfYearFrom">
+          {{ 'settings.calendarperiod.attribute.month.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.calendarperiod.attribute.month.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </label>
+        <p>{{ 'settings.shared.from' | translate }}</p>
+        <select class="custom-select myrtea-select" formControlName="monthsOfYearFrom">
+          <option value=""></option>
+          <option *ngFor="let month of months" value="{{ month.value }}">{{ month.translationKey | translate }}</option>
+        </select>
+        <p>{{ 'settings.shared.to' | translate }}</p>
+        <select class="custom-select myrtea-select" formControlName="monthsOfYearTo">
+          <option value=""></option>
+          <option *ngFor="let month of months" value="{{ month.value }}">{{ month.translationKey | translate }}</option>
+        </select>
+      </div>
+
+
+      <div class="form-row myrtea-timezone">
+        <label class="myrtea-label col-3" for="daysOfMonthFrom">
+          {{ 'settings.calendarperiod.attribute.day.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.calendarperiod.attribute.day.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </label>
+        <p>{{ 'settings.shared.from' | translate }}</p>
+        <input class="form-control myrtea-text-input myrtea-days" type="number" min="1" max="31" formControlName="daysOfMonthFrom">
+        <p>{{ 'settings.shared.to' | translate }}</p>
+        <input class="form-control myrtea-text-input myrtea-days" type="number" min="1" max="31" formControlName="daysOfMonthTo">
+      </div>
+
+      <div class="form-row myrtea-timezone">
+        <label class="myrtea-label col-3" for="daysOfWeekFrom">
+          {{ 'settings.calendarperiod.attribute.dayofaweek.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.calendarperiod.attribute.dayofaweek.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </label>
+        <p>{{ 'settings.shared.from' | translate }}</p>
+        <select class="custom-select myrtea-select" formControlName="daysOfWeekFrom">
+          <option value=""></option>
+          <option *ngFor="let day of days" value="{{ day.value }}">{{ day.translationKey | translate }}</option>
+        </select>
+        <p>{{ 'settings.shared.to' | translate }}</p>
+        <select class="custom-select myrtea-select" formControlName="daysOfWeekTo">
+          <option value=""></option>
+          <option *ngFor="let day of days" value="{{ day.value }}">{{ day.translationKey | translate }}</option>
+        </select>
+      </div>
+
+      <div class="form-row myrtea-timezone">
+        <label class="myrtea-label col-3" for="hoursOfDayFrom">
+          {{ 'settings.calendarperiod.attribute.hoursofaday.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.calendarperiod.attribute.hoursofaday.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </label>
+        <p>{{ 'settings.shared.from' | translate }}</p>
+        <input class="form-control myrtea-text-input myrtea-days" type="number" min="1" max="24" formControlName="hoursOfDayFrom">
+        <p>:</p>
+        <input class="form-control myrtea-text-input myrtea-days" type="number" min="1" max="59" formControlName="minutesOfDayFrom">
+        <p>{{ 'settings.shared.to' | translate }}</p>
+        <input class="form-control myrtea-text-input myrtea-days" type="number" min="1" max="24" formControlName="hoursOfDayTo">
+        <p>:</p>
+        <input class="form-control myrtea-text-input myrtea-days" type="number" min="1" max="59" formControlName="minutesOfDayTo">
+      </div>
+
+      <div class="form-row myrtea-form-group">
+        <label class="myrtea-label col-3">
+          {{ 'settings.calendarperiod.attribute.date.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.calendarperiod.attribute.date.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </label>
+        <p>{{ 'settings.shared.from' | translate }}</p>
+        <div class="myrtea-date-picker">
+          <mat-form-field>
+            <input matInput formControlName="dateTimeIntervalsFrom" [matDatepicker]="pickerFrom">
+            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFrom></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <p>{{ 'settings.shared.to' | translate }}</p>
+        <div class="myrtea-date-picker">
+          <mat-form-field>
+            <input matInput formControlName="dateTimeIntervalsTo" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="myrtea-form-group">
+        <div class="custom-control custom-switch myrtea-switch">
+          <input formControlName="included" type="checkbox" class="custom-control-input" id="included">
+          <label class="custom-control-label myrtea-label col-4" for="included">
+            {{ 'settings.calendarperiod.attribute.include.label' | translate }}
+            <mat-icon matTooltip="{{ 'settings.calendar.attribute.enabled.help' | translate }}" matTooltipPosition="below"
+              [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+          </label>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="myrtea-window-actions">
+    <button class="btn myrtea-cancel" (click)="closeDialog()">{{ 'settings.shared.action.cancel' | translate }}</button>
+    <button class="btn myrtea-validate" (click)="confirm()" [disabled]="!formIsValid()">
+      {{ (creationMode ? 'settings.shared.action.create' : 'settings.shared.action.save')  | translate }}
+    </button>
+  </div>
+
+</div>

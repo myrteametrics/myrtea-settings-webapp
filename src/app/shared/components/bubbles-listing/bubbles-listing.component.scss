@@ -1,0 +1,14 @@
+.bubbles-listing {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .bubble {
+    display: flex;
+    align-items: center;
+    margin-right: 1%;
+    p {
+      margin: 0 8px 0 0;
+    }
+  }
+}

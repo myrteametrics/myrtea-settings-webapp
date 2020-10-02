@@ -1,0 +1,7 @@
+<div class="bubbles-listing">
+  <div class="bubble myrtea-bubble-element" *ngFor="let element of data.elements">
+    <p>{{ element.text }}</p>
+    <mat-icon [svgIcon]="icons.CROSS.name" (click)="element.click.emit(element.id)"></mat-icon>
+  </div>
+</div>
+

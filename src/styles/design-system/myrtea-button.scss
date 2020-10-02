@@ -1,0 +1,97 @@
+@import 'src/styles/colors.scss';
+
+@mixin styleButton($color, $backgroundColor) {
+  color: $color;
+  background-color: $backgroundColor;
+}
+
+@mixin styleButtonOnHover($color, $backgroundColor) {
+  &:hover:enabled {
+    color: $color;
+    background-color: $backgroundColor;
+  }
+}
+
+button {
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
+
+  &.myrtea-more-actions {
+    @include styleButton($white, $ship-gray);
+    border: solid 2px transparent;
+    @include styleButtonOnHover($white, $alabaster);
+
+    mat-icon {
+      color: $white;
+    }
+
+    &:hover {
+      border: solid 2px $ship-gray;
+
+      mat-icon {
+        color: $ship-gray;
+      }
+    }
+  }
+
+  &.myrtea-delete-button:hover {
+    color: $red;
+    cursor: pointer;
+  }
+
+  &.myrtea-cancel {
+    @include styleButton($amaranth, transparent);
+    border: solid 2px transparent;
+    @include styleButtonOnHover(red, transparent);
+
+    &:hover {
+      border: solid 2px $amaranth;
+    }
+  }
+
+  &.myrtea-validate {
+    @include styleButton($ship-gray, $emerald);
+    @include styleButtonOnHover($pastel-green, white);
+    width: 150px;
+    border: solid transparent 2px;
+    line-height: 1.35;
+    text-align: center;
+    color: $white;
+
+    &:hover {
+      border: solid $pastel-green 2px;
+    }
+  }
+
+  &.myrtea-action {
+    @include styleButton($link, $white);
+    @include styleButtonOnHover(white, $link);
+    display: flex;
+    padding: 8px 10px;
+    align-items: center;
+    font-weight: 300;
+    line-height: 1.35;
+    border: solid 1.5px $link;
+
+    mat-icon {
+      margin-right: 12px;
+    }
+
+    &:hover {
+      border: solid 1.5px $link;
+    }
+
+  }
+
+  &:disabled {
+    @include styleButton($dove-gray, $concrete);
+    border: none;
+
+    &:hover {
+      border: none;
+      cursor: auto;
+    }
+  }
+
+}

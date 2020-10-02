@@ -1,0 +1,14 @@
+@import 'src/styles/constants.scss';
+@import 'src/styles/colors.scss';
+
+#administration-container {
+  margin: 1em;
+  height: calc(100vh - #{$header-height} - 2em);
+  display: flex;
+  flex-direction: column;
+
+  #administration-body {
+    margin: 1.5em 2em 0 2em;
+    height: 100%;
+  }
+}

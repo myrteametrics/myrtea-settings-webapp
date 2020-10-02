@@ -1,0 +1,15 @@
+/cicd
+/e2e
+/node_modules
+/src
+
+Makefile
+.editorconfig
+.gitignore
+angular.json
+package.json
+package-lock.json
+tsconfig.json
+tslint.json
+README.md
+.gitlab-ci.yml

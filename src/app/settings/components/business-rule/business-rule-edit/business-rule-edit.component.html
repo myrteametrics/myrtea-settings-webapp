@@ -1,0 +1,161 @@
+<div class="myrtea-settings-page" *ngIf="businessRuleEditService.currentState">
+  <app-settings-control-bar class="myrtea-settings-page-control-bar"
+    controlTitle="{{ businessRuleEditService.creationMode ? 'settings.businessrule.title.create' : 'settings.businessrule.title.edit' | translate : { name: businessRuleEditService.currentRule.name } }}"
+    [updateModifiedState]="formIsValid()" [noMoreOptions]="businessRuleEditService.noMoreOptions" (save)="save()"
+    (return)="businessRuleEditService.return()" (cancel)="cancel()" (delete)="businessRuleEditService.displayDelete()">
+  </app-settings-control-bar>
+  <div class="myrtea-settings-page-body">
+    <div [hidden]="businessRuleEditService.currentState !== businessRuleState.EDITION">
+      <form [formGroup]="ruleForm" class="myrtea-form">
+        <div class="myrtea-form-section form-group">
+          <div class="h2 myrtea-form-section-title">
+            {{ 'settings.businessrule.section.general.label' | translate }}<mat-icon
+              matTooltip="{{ 'settings.businessrule.section.general.help' | translate }}" matTooltipPosition="below"
+              [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+          </div>
+          <div class="myrtea-form-section-content">
+            <div class="form-row myrtea-form-group">
+              <div class="col-1" *ngIf="!businessRuleEditService.creationMode">
+                <label class="myrtea-label" for="ruleId">
+                  {{ 'settings.shared.attribute.id.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.shared.attribute.id.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+                </label>
+                <input class="form-control myrtea-text-input" type="text" formControlName="id" id="ruleId">
+              </div>
+              <div [ngClass]="businessRuleEditService.creationMode ? 'col-5' : 'col-4'">
+                <label class="myrtea-label" for="ruleName">
+                  {{ 'settings.shared.attribute.name.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.shared.attribute.name.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+                </label>
+                <input class="form-control myrtea-text-input" type="text" formControlName="name" id="ruleName">
+              </div>
+            </div>
+            <!--
+            <div class="form-row myrtea-form-group">
+              <div class="col-5">
+                <label class="myrtea-label" for="ruleTitle">
+                  {{ 'settings.shared.attribute.title.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.shared.attribute.title.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+                </label>
+                <input class="form-control myrtea-text-input" type="text" formControlName="title" id="ruleTitle">
+              </div>
+            </div> -->
+
+            <div class="form-row myrtea-form-group">
+              <div class="col-9">
+                <label class="myrtea-label" for="ruleDescription">
+                  {{ 'settings.shared.attribute.description.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.shared.attribute.description.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+                </label>
+                <textarea class="form-control myrtea-text-input" type="text" formControlName="description" id="ruleDescription"
+                  rows="4"></textarea>
+              </div>
+            </div>
+
+            <div class="myrtea-form-group">
+              <div class="custom-control custom-switch myrtea-switch">
+                <input formControlName="status" type="checkbox" class="custom-control-input" id="ruleStatus">
+                <label class="custom-control-label myrtea-label" for="ruleStatus">
+                  {{ 'settings.businessrule.attribute.status.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.businessrule.attribute.status.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="myrtea-form-section form-group">
+          <div class="h2 myrtea-form-section-title">
+            {{ 'settings.businessrule.section.calendar.label' | translate }}
+            <mat-icon matTooltip="{{ 'settings.businessrule.section.calendar.help' | translate }}" matTooltipPosition="below"
+              [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+            </mat-icon>
+          </div>
+          <div class="myrtea-form-section-content">
+            <div class="form-row">
+              <div class="col-md-4 form-group">
+                <label class="myrtea-label" for="calendar">
+                  {{ 'settings.businessrule.attribute.calendar.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.businessrule.attribute.calendar.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+                <select id="calendar" class="custom-select myrtea-select" formControlName="calendar">
+                  <option value=""></option>
+                  <option *ngFor="let calendar of calendars" [value]="calendar.id">{{ calendar.id }} - {{ calendar.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="myrtea-form-section form-group">
+          <div class="h2 myrtea-form-section-title">
+            {{ 'settings.businessrule.section.parameters.label' | translate }}
+            <mat-icon matTooltip="{{ 'settings.businessrule.section.parameters.help' | translate }}" matTooltipPosition="below"
+              [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+            </mat-icon>
+          </div>
+          <div class="myrtea-form-section-content">
+            <div class="form-row">
+              <div class="col-md-3">
+                <label class="myrtea-label" for="form-control-parameters-key">
+                  {{ 'settings.businessrule.attribute.parameters.key.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.businessrule.attribute.parameters.key.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+              </div>
+              <div class="col-md-3">
+                <label class="myrtea-label" for="form-control-parameters-value">
+                  {{ 'settings.businessrule.attribute.parameters.value.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.businessrule.attribute.parameters.value.help' | translate }}"
+                    matTooltipPosition="below" [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+              </div>
+            </div>
+            <ng-container *ngFor="let fieldForm of ruleForm.get('parameters')['controls']; let i = index">
+              <div class="mb-1 form-row" [formGroup]="fieldForm">
+                <div class="col-md-3">
+                  <input type="text" id="form-control-parameters-key" class="form-control myrtea-text-input" formControlName="key">
+                  <!-- <div class="valid-feedback">{{ 'settings.businessrule.parameters.key.valid' | translate }}</div>
+                  <div class="invalid-feedback">{{ 'settings.businessrule.parameters.key.invalid' | translate }}</div> -->
+                </div>
+                <div class="col-md-3">
+                  <input type="text" id="form-control-parameters-value" class="form-control myrtea-text-input" formControlName="value">
+                  <!-- <div class="valid-feedback">{{ 'settings.businessrule.parameters.value.valid' | translate }}</div>
+                  <div class="invalid-feedback">{{ 'settings.businessrule.parameters.value.invalid' | translate }}</div> -->
+                </div>
+                <div>
+                  <div class="pl-0 myrtea-add-section" (click)="deleteParameter(fieldForm, i)">
+                    <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="pl-0 myrtea-add-section" (click)="addNewParameter(ruleForm)">
+              <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+              <span class="px-2">{{ 'settings.businessrule.action.addparameter.label' | translate }}</span>
+            </div>
+          </div>
+        </div>
+
+        <app-business-rule-case-composition (isDirtyEmitter)="isDirty = $event">
+        </app-business-rule-case-composition>
+
+        <app-business-rule-situation-composition #situationComposition [creationMode]="creationMode" (isDirtyEmitter)="isDirty = $event">
+        </app-business-rule-situation-composition>
+      </form>
+    </div>
+
+    <app-business-rule-case-edit #caseEdit
+      *ngIf="businessRuleEditService.currentState === businessRuleState.CASEEDITION || businessRuleEditService.currentState === businessRuleState.CASECREATION">
+    </app-business-rule-case-edit>
+  </div>
+</div>

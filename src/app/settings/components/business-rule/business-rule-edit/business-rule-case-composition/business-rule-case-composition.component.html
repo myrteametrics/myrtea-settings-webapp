@@ -1,0 +1,13 @@
+<div class="form-group myrtea-form-section">
+  <div class="h2 myrtea-form-section-title">
+    {{ 'settings.businessrule.section.case.label' | translate }}<mat-icon
+      matTooltip="{{ 'settings.businessrule.section.case.help' | translate }}" matTooltipPosition="below"
+      [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+  </div>
+  <app-settings-table [data]="conditionsTableSettingsData" emptyMessage="{{ 'settings.businessrule.component.table.empty' | translate }}">
+  </app-settings-table>
+  <button class="myrtea-action" (click)="redirectUserToCreateCase()">
+    <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+    {{ 'settings.businessrulecase.action.create.label' | translate }}
+  </button>
+</div>

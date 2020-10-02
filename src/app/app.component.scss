@@ -1,0 +1,36 @@
+@import 'src/styles/colors.scss';
+@import 'src/styles/toastr.scss';
+
+@mixin styleNotification($color) {
+  background-color: rgba($color: $color, $alpha: .7);
+  border: solid transparent 2px;
+
+  &:hover {
+    border: solid $color 2px;
+    background-color: rgba($color: $color, $alpha: .8);
+  }
+}
+
+.toast-success {
+  @include styleNotification($pastel-green);
+}
+
+.toast-warning {
+  @include styleNotification($jaffa);
+}
+
+.toast-info {
+  @include styleNotification($thumbs-up);
+}
+
+.toast-error {
+  @include styleNotification($red);
+}
+
+.toast-container .ngx-toastr {
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: none;
+  }
+}

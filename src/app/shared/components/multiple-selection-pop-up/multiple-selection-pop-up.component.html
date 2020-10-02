@@ -1,0 +1,42 @@
+<div class="myrtea-window">
+  <div class="myrtea-window-header">
+    <h2>{{ data.title | translate }}</h2>
+    <mat-icon [svgIcon]="icons.CROSS.name" (click)="closeDialog()"></mat-icon>
+  </div>
+  <div class="multiple-selection-search myrtea-input-container">
+    <label>{{ data.search | translate }}</label>
+    <input class="form-control myrtea-text-input" type="text" #searchInput (input)="search(searchInput.value)"
+      placeholder="{{ data.search | translate }}">
+  </div>
+  <div class="myrtea-window-body">
+    <div class="multiple-selection-list">
+      <div class="element" *ngFor="let element of searchElements" (click)="selectElement(element)">
+        <p>
+          <mat-icon [svgIcon]="element?.icon" *ngIf="element.icon"></mat-icon>
+          {{ element.name }}
+        </p>
+        <input type="checkbox" checked *ngIf="elementIsSelected(element)">
+        <input type="checkbox" *ngIf="!elementIsSelected(element)">
+      </div>
+    </div>
+    <div class="multiple-selection-selected">
+      <div class="multiple-selection-title">
+        <p>
+          <span class="selected-text">{{ data.selected | translate }}</span>
+          {{ selectedElements.length }}
+        </p>
+      </div>
+      <div class="myrtea-bubble-element" *ngFor="let element of selectedElements">
+        <p>{{ element.name }}</p>
+        <mat-icon [svgIcon]="icons.CROSS.name" (click)="selectElement(element)">
+        </mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="myrtea-window-actions">
+    <button class="btn myrtea-cancel" (click)="closeDialog()">{{ 'settings.shared.action.cancel' | translate }}</button>
+    <button class="myrtea-validate" [disabled]="selectedElements.length === 0"
+      [ngClass]="{ 'myrtea-disabled' : selectedElements.length === 0 }"
+      (click)="confirmSelection()">{{ 'settings.shared.action.add' | translate }}</button>
+  </div>
+</div>

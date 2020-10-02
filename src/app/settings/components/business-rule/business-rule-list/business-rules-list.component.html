@@ -1,0 +1,19 @@
+<div class="myrtea-list-container">
+  <div class="myrtea-list-header">
+    <div class="search-container">
+      <input #userInputSearchBusinessRules type="text"
+        placeholder="{{ 'settings.shared.action.search' | translate }}"
+        (input)="searchBusinessRules(userInputSearchBusinessRules.value)">
+      <mat-icon [svgIcon]="icons.SEARCH.name"></mat-icon>
+    </div>
+    <button class="myrtea-action" routerLink="/settings/business-rules/new">
+      <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+      <span>{{ 'settings.businessrule.action.create.label' | translate }}</span>
+    </button>
+  </div>
+  <div class="myrtea-list-body">
+    <app-settings-table [data]="tableSettingsData"
+      emptyMessage="{{ 'settings.businessrule.component.table.empty' | translate }}">
+    </app-settings-table>
+  </div>
+</div>

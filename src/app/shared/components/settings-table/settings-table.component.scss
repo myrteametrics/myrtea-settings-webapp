@@ -1,0 +1,170 @@
+@import 'src/styles/colors.scss';
+
+.cursor-hover {
+  cursor: pointer;
+
+  mat-icon,
+  span {
+    cursor: pointer;
+  }
+}
+
+.settings-table-container {
+
+  height: 100%;
+
+  .settings-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: 6px;
+
+    .settings-table-row {
+      width: 100%;
+    }
+
+    .ordered-panel {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      margin: -10px 8px 0 8px;
+      overflow: hidden;
+
+      mat-icon {
+        color: $dove-gray;
+        height: 13px;
+        width: 13px;
+        margin: 2px;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  .settings-header-container {
+    padding-right: .5em;
+
+    .settings-table-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding: 6px;
+
+      p {
+        font-size: 14px;
+        line-height: 1.36;
+        letter-spacing: 0.38px;
+        color: $dove-gray;
+        display: flex;
+        padding-right: 28px;
+        margin: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  #settings-table-rows {
+    overflow: scroll;
+    height: 95%;
+    padding-right: .5em;
+  }
+
+  .settings-table-row {
+    display: flex;
+    justify-content: space-between;
+    background-color: $white;
+    border-radius: 8px;
+
+    padding: 6px;
+
+    p {
+      display: flex;
+      padding-right: 28px;
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.38;
+      color: $ship-gray;
+
+      span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+      }
+
+      mat-icon {
+        height: 20px;
+        width: 20px;
+        fill: $primary;
+        margin-right: 12px;
+      }
+
+      &.bold {
+        font-weight: bold;
+      }
+
+      &.delete mat-icon:hover {
+        border-radius: 100%;
+        fill: $red;
+      }
+
+      &.is-template {
+        span {
+          color: $white;
+          background-color: $dodger-blue;
+          font-weight: bold;
+          padding: 2px 8px;
+          font-size: 0.8rem;
+          // margin-left: 12px;
+          border-radius: 2px;
+        }
+      }
+
+      &.on-indicator,
+      &.off-indicator {
+        span {
+          color: $white;
+          background-color: $emerald;
+          font-weight: bold;
+          padding: 0px 5px;
+          margin-left: 12px;
+          border-radius: 2px;
+        }
+      }
+
+      &.off-indicator {
+        span {
+          background-color: $red;
+        }
+      }
+
+      &.simple-user mat-icon {
+        color: $silver;
+
+        &:hover {
+          color: $dove-gray;
+        }
+      }
+
+      &:last-child {
+        display: flex;
+        justify-content: flex-end;
+
+        mat-icon {
+          color: $dove-gray;
+          cursor: pointer;
+        }
+      }
+
+      &.empty-message {
+        justify-content: flex-start;
+      }
+    }
+  }
+}

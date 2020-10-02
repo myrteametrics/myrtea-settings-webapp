@@ -1,0 +1,29 @@
+<div class="user-settings-container" *ngIf="settingsForm">
+  <form [formGroup]="settingsForm">
+    <div class="myrtea-form-section">
+      <div class="h2 myrtea-form-section-title">
+        {{ 'settings.usersettings.section.language.label' | translate }}
+        <mat-icon matTooltip="{{ 'settings.usersettings.section.language.help' | translate }}" matTooltipPosition="below"
+          [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+        </mat-icon>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label class="myrtea-label" for="language">{{ 'settings.usersettings.action.chooselanguage.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.usersettings.action.chooselanguage.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </label>
+        <select formControlName="language" id="language" class="custom-select myrtea-select">
+          <option value="fr">{{ 'settings.usersettings.attribute.country.french' | translate }}
+          </option>
+          <option value="en">{{ 'settings.usersettings.attribute.country.english' | translate }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <button [disabled]="!formIsValid()" (click)="saveUserSettings()"
+    class="myrtea-validate">{{ 'settings.shared.action.save' | translate }}</button>
+</div>

@@ -1,0 +1,83 @@
+<div class="myrtea-settings-page">
+  <app-settings-control-bar class="myrtea-settings-page-control-bar"
+    controlTitle="{{ creationMode ? 'settings.calendar.title.create' : 'settings.calendar.title.edit' | translate }}" (return)="return()"
+    (cancel)="cancel()" (delete)="deleteCalendar()" (save)="saveCalendar()" [noMoreOptions]="creationMode"
+    [updateModifiedState]="calendarIsModifiedAndReady()">
+  </app-settings-control-bar>
+  <div class="myrtea-settings-page-body">
+    <form [formGroup]="calendarForm">
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.calendar.section.general.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.calendar.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-2 form-group" *ngIf="!creationMode">
+              <label class="myrtea-label" for="situation-id">
+                {{ 'settings.shared.attribute.id.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.id.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input type="text" id="situation-id" class="form-control myrtea-text-input" formControlName="id">
+            </div>
+            <div [ngClass]="{'col-md-4' : !creationMode, 'col-md-6': creationMode}" class="form-group">
+              <label class="myrtea-label" for="situation-name">
+                {{ 'settings.shared.attribute.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.name.label' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input type="text" id="situation-name" class="form-control myrtea-text-input" formControlName="name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-6">
+              <label class="myrtea-label" for="description">
+                {{ 'settings.shared.attribute.description.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.description.name.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input class="form-control myrtea-text-input" type="text" formControlName="description" id="description">
+            </div>
+          </div>
+          
+          <div class="myrtea-form-group">
+            <div class="custom-control custom-switch myrtea-switch">
+              <input formControlName="enabled" type="checkbox" class="custom-control-input" id="enabled">
+              <label class="custom-control-label myrtea-label" for="enabled">
+                {{ 'settings.calendar.attribute.enabled.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.calendar.attribute.enabled.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.calendar.section.unioncalendar.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.unioncalendar.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <app-calendar-composition #calendarComposition (isDirtyEmitter)="isDirty = $event" *ngIf="calendar"
+          [currentCalendarId]="calendar.id" [calendarIds]="calendar.unionCalendarIDs">
+        </app-calendar-composition>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.calendar.section.period.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.calendar.section.period.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <app-period-list *ngIf="calendar" #periodList (isDirtyEmitter)="isDirty = $event" [periods]="calendar.periods"></app-period-list>
+      </div>
+    </form>
+  </div>
+</div>

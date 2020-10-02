@@ -1,0 +1,27 @@
+@import 'src/styles/colors.scss';
+
+#control-bar {
+  display: flex;
+  margin-bottom: 16px;
+  justify-content: space-between;
+
+  #control-bar-title {
+    display: flex;
+
+    #return {
+      color: $dove-gray;
+      margin-right: 1em;
+      width: 1em;
+      height: 1em;
+      cursor: pointer;
+    }
+  }
+
+  #control-bar-actions {
+    display: flex;
+
+    button {
+      margin-left: 1em;
+    }
+  }
+}

@@ -1,0 +1,80 @@
+<div class="myrtea-window" *ngIf="actionForm">
+  <div class="myrtea-window-header">
+    <h2>{{ (creationMode ? 'settings.businessruleaction.title.create' : 'settings.businessruleaction.title.edit') | translate }}
+    </h2>
+    <mat-icon [svgIcon]="icons.CROSS.name" (click)="dialogRef.close()"></mat-icon>
+  </div>
+
+  <div class="myrtea-window-body">
+    <form [formGroup]="actionForm" class="myrtea-form">
+      <div class="form-row">
+        <label class="myrtea-label" for="typeTask">
+          {{ 'settings.shared.attribute.name.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.shared.attribute.name.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </label>
+        <select formControlName="name" class="custom-select myrtea-select" id="actionName" #actionName>
+          <option value=""></option>
+          <option *ngFor="let action of ACTIONS_TYPE" value="{{ action.name }}">{{ action.name }}</option>
+        </select>
+      </div>
+    </form>
+
+
+
+    <div class="myrtea-form" *ngIf="actionForm.get('name').value">
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.businessrule.section.parameters.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.businessrule.section.parameters.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-5">
+              <label class="myrtea-label" for="form-control-parameters-key">
+                {{ 'settings.businessruleaction.attribute.key.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.businessruleaction.attribute.key.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="myrtea-label" for="form-control-parameters-value">
+                {{ 'settings.businessruleaction.attribute.value.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.businessruleaction.attribute.value.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+          </div>
+          <ng-container *ngFor="let fieldForm of parametersForm.get('parameters')['controls']; let i = index">
+            <div class="mb-1 form-row" [formGroup]="fieldForm">
+              <div class="col-md-5">
+                <input type="text" class="form-control myrtea-text-input" formControlName="key">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control myrtea-text-input" formControlName="value">
+              </div>
+              <div *ngIf="actionName.value === 'set'">
+                <div class="pl-0 myrtea-add-section" (click)="deleteParameter(fieldForm, i)">
+                  <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div *ngIf="actionName.value === 'set'" class="pl-0 myrtea-add-section" (click)="addNewParameter(parametersForm)">
+            <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+            <span class="px-2">{{ 'settings.businessrule.action.addparameter.label' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="myrtea-window-actions">
+    <button class="btn myrtea-cancel" (click)="dialogRef.close()">{{ 'settings.shared.action.cancel' | translate }}</button>
+    <button class="btn myrtea-validate" (click)="confirm()">{{ 'settings.shared.action.save' | translate }}</button>
+  </div>
+</div>

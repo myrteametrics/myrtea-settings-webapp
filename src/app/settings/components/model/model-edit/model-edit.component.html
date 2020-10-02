@@ -1,0 +1,297 @@
+<div class="myrtea-settings-page">
+  <app-settings-control-bar class="myrtea-settings-page-control-bar"
+    controlTitle="{{ creationMode ? 'settings.model.title.create' : 'settings.model.title.edit' | translate : {'name': modelName } }}"
+    [noMoreOptions]="creationMode" [updateModifiedState]="modelEditForm && modelEditForm.dirty" (return)="onReturn()" (cancel)="onCancel()"
+    (save)="onSave()" (delete)="onDelete()">
+  </app-settings-control-bar>
+
+  <div class="myrtea-settings-page-body">
+    <form *ngIf="modelEditForm" [ngClass]="{'was-validated': wasValidated}" class="myrtea-form needs-validation" novalidate
+      [formGroup]="modelEditForm">
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.model.section.general.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.model.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-1 form-group" *ngIf="modelId">
+              <label class="myrtea-label" for="form-control-id">
+                {{ 'settings.shared.attribute.id.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.id.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input type="text" id="form-control-id" class="form-control myrtea-text-input" formControlName="id">
+            </div>
+            <div [ngClass]="{'col-md-3' : !creationMode, 'col-md-4': creationMode}" class="form-group">
+              <label class="myrtea-label" for="form-control-name">
+                {{ 'settings.shared.attribute.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.name.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <input required type="text" id="form-control-name" class="form-control myrtea-text-input" formControlName="name">
+              <!-- <div class="valid-feedback">{{ 'settings.shared.attribute.name.valid' | translate }}</div>
+              <div class="invalid-feedback">{{ 'settings.shared.attribute.name.invalid' | translate }}</div> -->
+            </div>
+            <div class="col-md-6">
+              <label class="myrtea-label" for="form-control-synonyms">
+                {{ 'settings.model.attribute.synonyms.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.model.attribute.synonyms.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <input type="text" id="form-control-synonyms" class="form-control myrtea-text-input" formControlName="synonyms">
+              <!-- <div class="valid-feedback">{{ 'settings.model.attribute.synonyms.valid' | translate }}</div>
+              <div class="invalid-feedback">{{ 'settings.model.attribute.synonyms.invalid' | translate }}</div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.model.section.fields.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.model.section.fields.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-2">
+              <label class="myrtea-label" for="form-control-fields-name">
+                {{ 'settings.model.attribute.field.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.model.attribute.field.name.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-2">
+              <label class="myrtea-label" for="form-control-fields-type">
+                {{ 'settings.model.attribute.field.type.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.model.attribute.field.type.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="myrtea-label" for="form-control-fields-synonyms">
+                {{ 'settings.model.attribute.field.synonyms.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.model.attribute.field.synonyms.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+          </div>
+
+          <ng-container *ngFor="let fieldForm of modelEditForm.get('fields')['controls']; let i = index" class="form-group col-md-12">
+            <ng-container *ngTemplateOutlet="fieldRow; context:{ level: 0, index: i, fieldForm: fieldForm }">
+            </ng-container>
+          </ng-container>
+
+          <div class="form-group pl-0 myrtea-add-section" (click)="addNewChildField(modelEditForm)">
+            <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+            <span class="px-2">{{ 'settings.model.action.addfield.label' | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.model.section.elasticsearchoptions.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.model.section.elasticsearchoptions.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <ng-container [formGroup]="modelEditForm.controls.elasticsearchOptions">
+            <div class="form-row">
+              <div class="col-md-3 form-group">
+                <label class="myrtea-label" for="form-control-rollmode">
+                  {{ 'settings.model.attribute.rollmode.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.model.attribute.rollmode.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+                <select required class="custom-select myrtea-select" formControlName="rollmode">
+                  <option value="cron">Cron</option>
+                </select>
+                <!-- <div class="valid-feedback">{{ 'settings.model.attribute.rollmode.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.model.attribute.rollmode.invalid' | translate }}</div> -->
+              </div>
+              <div class="col-md-3 form-group">
+                <label class="myrtea-label" for="form-control-rollcron">
+                  {{ 'settings.model.attribute.rollcron.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.model.attribute.rollcron.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+                <input type="text" id="form-control-rollcron" class="form-control myrtea-text-input" formControlName="rollcron">
+                <!-- <div class="valid-feedback">{{ 'settings.model.attribute.rollcron.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.model.attribute.rollcron.invalid' | translate }}</div> -->
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-3 form-group">
+                <label class="myrtea-label" for="form-control-enablePurge">
+                  {{ 'settings.model.attribute.enablepurge.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.model.attribute.enablepurge.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+                <input type="checkbox" class="form-control myrtea-checkbox" formControlName="enablePurge">
+                <!-- <div class="valid-feedback">{{ 'settings.model.attribute.enablepurge.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.model.attribute.enablepurge.invalid' | translate }}</div> -->
+              </div>
+              <div class="col-md-3 form-group">
+                <label class="myrtea-label" for="form-control-purgeMaxConcurrentIndices">
+                  {{ 'settings.model.attribute.purgemaxindices.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.model.attribute.purgemaxindices.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+                <input type="number" id="form-control-purgeMaxConcurrentIndices" class="form-control myrtea-text-input"
+                  formControlName="purgeMaxConcurrentIndices">
+                <!-- <div class="valid-feedback">{{ 'settings.model.attribute.purgemaxindices.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.model.attribute.purgemaxindices.invalid' | translate }}</div> -->
+              </div>
+              <div class="col-md-3 form-group">
+                <label class="myrtea-label" for="form-control-patchAliasMaxIndices">
+                  {{ 'settings.model.attribute.patchmaxindices.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.model.attribute.patchmaxindices.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+                <input type="number" id="form-control-patchAliasMaxIndices" class="form-control myrtea-text-input"
+                  formControlName="patchAliasMaxIndices">
+                <!-- <div class="valid-feedback">{{ 'settings.model.attribute.patchmaxindices.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.model.attribute.patchmaxindices.invalid' | translate }}</div> -->
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.model.section.advancedoptions.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.model.section.advancedoptions.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-3">
+              <label class="myrtea-label" for="form-control-advancedsettings-key">
+                {{ 'settings.model.attribute.advanced.key.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.model.attribute.advanced.key.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-3">
+              <label class="myrtea-label" for="form-control-advancedsettings-value">
+                {{ 'settings.model.attribute.advanced.value.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.model.attribute.advanced.value.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+          </div>
+          <ng-container *ngFor="let fieldForm of modelEditForm.get('elasticsearchOptions.advancedSettings')['controls']; let i = index">
+            <div class="mb-1 form-row" [formGroup]="fieldForm">
+              <div class="col-md-3">
+                <input type="text" id="form-control-advancedsettings-key" class="form-control myrtea-text-input" formControlName="key">
+                <!-- <div class="valid-feedback">{{ 'settings.model.attribute.advanced.key.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.model.attribute.advanced.key.invalid' | translate }}</div> -->
+              </div>
+              <div class="col-md-3">
+                <input type="text" id="form-control-advancedsettings-value" class="form-control myrtea-text-input" formControlName="value">
+                <!-- <div class="valid-feedback">{{ 'settings.model.attribute.advanced.value.valid' | translate }}</div>
+                <div class="invalid-feedback">{{ 'settings.model.attribute.advanced.value.invalid' | translate }}</div> -->
+              </div>
+              <div>
+                <div class="pl-0 myrtea-add-section" (click)="deleteAdvancedSettings(fieldForm, i)">
+                  <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="pl-0 myrtea-add-section" (click)="addNewChildAdvancedSettings(modelEditForm.controls.elasticsearchOptions)">
+            <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+            <span class="px-2">{{ 'settings.model.action.addoption.label' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #fieldRow let-level="level" let-index="index" let-fieldForm="fieldForm">
+  <div [ngSwitch]="fieldForm.controls.type.value">
+    <div *ngSwitchCase="'object'">
+      <div class="mb-1 form-row" [formGroup]="fieldForm">
+        <div class="col-md-2">
+          <input required type="text" class="form-control myrtea-text-input" formControlName="name">
+          <!-- <div class="valid-feedback">{{ 'settings.model.attribute.field.name.valid' | translate }}</div>
+          <div class="invalid-feedback">{{ 'settings.model.attribute.field.name.invalid' | translate }}</div> -->
+        </div>
+        <div class="col-md-2">
+          <select required class="custom-select myrtea-select" formControlName="type">
+            <option value=""></option>
+            <option *ngFor="let fieldType of fieldTypes" [value]="fieldType[1]">{{ fieldType[0] }}</option>
+          </select>
+          <!-- <div class="valid-feedback">{{ 'settings.model.attribute.field.type.valid' | translate }}</div>
+          <div class="invalid-feedback">{{ 'settings.model.attribute.field.type.invalid' | translate }}</div> -->
+        </div>
+        <!-- <div class="col-md-1 form-inline">
+          <input type="checkbox" class="form-control myrtea-checkbox" formControlName="keepObjectSeparation">
+        </div> -->
+        <div class="col-md-2 pt-1">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" formControlName="keepObjectSeparation"
+              id="customCheck-{{ level }}-{{index}}">
+            <label class="custom-control-label"
+              for="customCheck-{{ level }}-{{index}}">{{ 'settings.model.attribute.keepobjectseparation.label' | translate }}</label>
+          </div>
+        </div>
+        <div class="pl-0 myrtea-add-section" (click)="deleteField(fieldForm, index)">
+          <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+        </div>
+        <div class="pl-0 myrtea-add-section" (click)="addNewChildField(fieldForm)">
+          <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+          <span class="px-2">{{ 'settings.model.action.addfield.label' | translate }}</span>
+        </div>
+      </div>
+      <div *ngFor="let field of fieldForm.controls.fields.controls; let i = index" class="myrtea-nested-row">
+        <ng-container *ngTemplateOutlet="fieldRow; context: { level: level + 1, index: i, fieldForm: field }"></ng-container>
+      </div>
+    </div>
+
+    <div *ngSwitchDefault>
+      <div class="mb-1 form-row" [formGroup]="fieldForm">
+        <div class="col-md-2">
+          <input required type="text" class="form-control myrtea-text-input" formControlName="name">
+          <!-- <div class="valid-feedback">{{ 'settings.model.attribute.field.name.valid' | translate }}</div>
+          <div class="invalid-feedback">{{ 'settings.model.attribute.field.name.invalid' | translate }}</div> -->
+        </div>
+        <div class="col-md-2">
+          <select required class="custom-select myrtea-select" formControlName="type">
+            <option value=""></option>
+            <option *ngFor="let fieldType of fieldTypes" [value]="fieldType[1]">{{ fieldType[0] }}</option>
+          </select>
+          <!-- <div class="valid-feedback">{{ 'settings.model.attribute.field.type.valid' | translate }}</div>
+          <div class="invalid-feedback">{{ 'settings.model.attribute.field.type.invalid' | translate }}</div> -->
+        </div>
+        <div class="col-md-6">
+          <input type="text" class="form-control myrtea-text-input" formControlName="synonyms">
+          <!-- <div class="valid-feedback">{{ 'settings.model.attribute.field.synonyms.valid' | translate }}</div>
+          <div class="invalid-feedback">{{ 'settings.model.attribute.field.synonyms.invalid' | translate }}</div> -->
+        </div>
+        <div class="pl-0 myrtea-add-section" (click)="deleteField(fieldForm, index)">
+          <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

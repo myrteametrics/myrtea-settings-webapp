@@ -1,0 +1,50 @@
+<div id="fact-test-container">
+  <div id="fact-test-header">
+    <h2 translate>{{ 'settings.fact.test.title' | translate }}</h2>
+    <mat-icon [svgIcon]="icons.CROSS.name" (click)="closeDialog()"></mat-icon>
+  </div>
+  <div class="modal-body m-3">
+    <div class="h2 myrtea-form-section-title" translate>settings.fact.labels.parameters
+      <mat-icon matTooltip="{{ 'settings.fact.info.parameters' | translate }}" matTooltipPosition="below"
+        [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+      </mat-icon>
+    </div>
+    <form novalidate [formGroup]="testForm">
+      <div class="form-row">
+        <div class="col-12 mt-3">
+          <div class="form-group">
+            <input type="text" placeholder="{{ 'settings.fact.test.placeholders.timestamp' | translate }}"
+              class="form-control myrtea-text-input" id="validationCustom01" formControlName="timestamp" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-12 mt-3">
+          <div class="form-group">
+            <input type="text" placeholder="{{ 'settings.fact.test.placeholders.hits' | translate }}"
+              class="form-control myrtea-text-input" id="validationCustom01" formControlName="hits">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-12 mt-3">
+          <div class="form-group">
+            <input type="text" placeholder="{{ 'settings.fact.test.placeholders.offset' | translate }}"
+              class="form-control myrtea-text-input" id="validationCustom01" formControlName="offset">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-12 mt-3">
+          <div class="form-group">
+            <input type="text" placeholder="{{ 'settings.fact.test.placeholders.placeholders' | translate }}"
+              class="form-control myrtea-text-input" id="validationCustom01" formControlName="placeholders">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer d-flex justify-content-center">
+    <button class="myrtea-validate" (click)="validate()">{{ 'settings.fact.labels.execute' | translate }}</button>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="sidenav">
+  <div class="sidenav-header">
+    <img src="{{ imagesPaths.LOGO }}" alt="logo myrtea" class="logo-myrtea">
+    <ul class="links-sidenav">
+      <ng-container *ngFor="let tab of sidenavTabs">
+        <li *appHasRight="tab.permission" routerLink="{{ tab.link }}" [ngClass]="isSelected(tab.prefix) ? 'selected' : ''">
+          <mat-icon svgIcon="{{ tab.iconName }}" matTooltip="{{ tab.iconTooltip | translate }}" matTooltipPosition="right"></mat-icon>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="sidenav-assistant">
+    <mat-icon class="user-access" [matMenuTriggerFor]="menu" [svgIcon]="icons.USER.name"
+      matTooltip="{{ 'sidenav.administration.tooltip' | translate }}" matTooltipPosition="right"></mat-icon>
+    <mat-menu #menu="matMenu" [class]="'sidenav-mat-menu'">
+      <button mat-menu-item routerLink="/administration/security-groups">
+        <span>{{ 'sidenav.administration.label' | translate }}</span>
+      </button>
+      <button mat-menu-item routerLink="/user-settings">
+        <span>{{ 'settings.title.usersettings' | translate }}</span>
+      </button>
+      <button mat-menu-item (click)="onLogout()">
+        <span class="logout">{{ 'sidenav.logout' | translate }}</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>

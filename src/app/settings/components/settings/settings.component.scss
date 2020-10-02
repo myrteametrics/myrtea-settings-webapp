@@ -1,0 +1,21 @@
+@import 'src/styles/constants.scss';
+@import 'src/styles/colors.scss';
+
+#settings-container {
+  position: fixed;
+  top: calc(#{$header-height} + 1em);
+  left: calc(#{$navbar-width} + 1em);
+  right: 1em;
+  bottom: 1em;
+  overflow: hidden;
+
+  .myrtea-module-navbar {
+    height: 35px;
+  }
+
+  #settings-body {
+    height: calc(100% - 35px);
+    padding-top: 1em;
+    overflow: hidden;
+  }
+}

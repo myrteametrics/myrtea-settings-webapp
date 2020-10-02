@@ -1,0 +1,6 @@
+<app-settings-table [data]="instanceTableSettingsData" emptyMessage="{{ 'settings.situation.component.table.empty' | translate }}">
+</app-settings-table>
+<div class="pl-0 myrtea-add-section" (click)="displayNewInstanceEditor()">
+  <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+  <span class="px-2">{{ 'settings.situation.action.addinstance.label' | translate }}</span>
+</div>

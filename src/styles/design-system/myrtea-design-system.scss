@@ -1,0 +1,184 @@
+@import 'src/styles/colors.scss';
+@import 'src/styles/constants.scss';
+
+mat-dialog-container {
+  padding: 0 !important;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.36;
+  text-align: left;
+  color: $dove-gray;
+  margin: 0;
+}
+
+h2 {
+  color: white;
+  margin: 4px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 23px;
+  font-weight: bold;
+  line-height: 1.35;
+  letter-spacing: 0.18px;
+}
+
+
+
+.myrtea-link {
+  color: $thumbs-up !important;
+
+  &:hover {
+    text-decoration: underline !important;
+    cursor: pointer;
+  }
+}
+
+.myrtea-switch.custom-switch {
+
+  .custom-control-label::before,
+  .custom-control-label::after {
+    border-radius: 0.2rem;
+  }
+
+  .custom-control-input:checked~.custom-control-label::before {
+    border-color: $dodger-blue;
+    background-color: $dodger-blue;
+  }
+}
+
+.myrtea-mat-menu {
+  min-height: 38px !important;
+  margin-top: 8px;
+
+  .mat-menu-content {
+    padding: 0 !important;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.33;
+  }
+
+  .mat-menu-item {
+    color: $charcoal-grey;
+    border-radius: 0px;
+    height: 38px;
+    text-align: center;
+    line-height: 38px;
+
+    &:hover {
+      background-color: $pale-lilac;
+      color: $blueberry;
+    }
+  }
+}
+
+.myrtea-module-navbar {
+  list-style: none;
+  display: flex;
+  border: solid $primary;
+  border-width: 0 0 1px 0;
+  margin: 0 2em;
+  padding: 0;
+
+  li {
+    color: $dove-gray;
+    border: solid transparent;
+    border-width: 0 0 3px 0;
+    margin: 0;
+    padding: 0 1.5em .5em 1.5em;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1.38;
+    width: 15em;
+    text-align: center;
+
+    &.selected {
+      border: solid $primary;
+      border-width: 0 0 3px 0;
+      color: $primary;
+      font-weight: bold;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.myrtea-bubble-element {
+  background-color: $pale-lilac;
+  margin: 8px 0;
+  padding: 4px 8px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+
+  mat-icon {
+    cursor: pointer;
+    visibility: hidden;
+    color: $ship-gray;
+    height: 16px;
+    width: 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  &:hover {
+    mat-icon {
+      visibility: visible;
+    }
+  }
+}
+
+.myrtea-delete-icon {
+  color: $primary;
+  height: 20px;
+  width: 20px;
+
+  &:hover {
+    color: $red;
+  }
+}
+
+
+.myrtea-administraion-container {
+  overflow: hidden;
+
+  .myrtea-administration-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 26px;
+  }
+}
+
+.myrtea-nested-row {
+  margin-left: 25px;
+}
+
+.myrtea-add-section {
+  color: $link;
+  display: flex;
+  cursor: pointer;
+}
+
+.myrtea-tooltip-icon {
+  height: 1rem !important;
+  width: 1rem !important;
+}
+
+
+.myrtea-date-picker {
+  .mat-form-field-infix {
+    border: 0px !important;
+  }
+
+  .mat-form-field-wrapper {
+    width: 9em !important;
+    margin: 0 1em;
+  }
+}

@@ -1,0 +1,7 @@
+<div class="myrtea-input-with-suggestions">
+  <app-input-with-suggestions [data]="calendarWithSuggestions" (selectEmitter)="addCalendar($event)">
+  </app-input-with-suggestions>
+  <a class="myrtea-link" (click)=displayMultipleCalendarSelection()>{{ 'settings.calendar.component.addelement.display' | translate }}</a>
+</div>
+<app-settings-table [data]="calendarsTableSettingsData" emptyMessage="{{ 'settings.calendar.component.table.empty' | translate }}">
+</app-settings-table>

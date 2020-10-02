@@ -1,0 +1,21 @@
+<div id="control-bar">
+  <div id="control-bar-title">
+    <mat-icon [svgIcon]="icons.CHEVRON_LEFT.name" id="return" (click)="onReturn()">
+    </mat-icon>
+    <h1>{{ controlTitle | translate}}</h1>
+  </div>
+  <div id="control-bar-actions">
+    <button class="btn myrtea-cancel"
+      (click)="onCancel()">{{ (noMoreOptions ? 'settings.shared.action.cancel' : 'settings.shared.action.reset') | translate }}</button>
+    <button class="myrtea-validate" (click)="onSave()" [disabled]="!isModified">{{ 'settings.shared.action.save' | translate }}</button>
+    <button class="myrtea-more-actions" [matMenuTriggerFor]="moreActions" #moreActionsTrigger="matMenuTrigger" *ngIf="!noMoreOptions">
+      <mat-icon [svgIcon]="icons.EXPAND_LESS.name" *ngIf="moreActionsTrigger.menuOpen"></mat-icon>
+      <mat-icon [svgIcon]="icons.EXPAND_MORE.name" *ngIf="!moreActionsTrigger.menuOpen"></mat-icon>
+      <mat-menu #moreActions="matMenu" [class]="'myrtea-mat-menu'" xPosition="before">
+        <button mat-menu-item (click)="onDelete()">
+          {{ 'settings.shared.action.delete' | translate }}
+        </button>
+      </mat-menu>
+    </button>
+  </div>
+</div>

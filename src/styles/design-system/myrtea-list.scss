@@ -1,0 +1,21 @@
+@import 'src/styles/colors.scss';
+
+$margin-header: 25px;
+$height-header: 45px;
+
+.myrtea-list-container {
+  height: 100%;
+  overflow: hidden;
+
+  .myrtea-list-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $margin-header;
+    height: $height-header;
+    overflow: hidden;
+  }
+
+  .myrtea-list-body {
+    height: calc(85%);
+  }
+}

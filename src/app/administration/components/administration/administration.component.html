@@ -1,0 +1,16 @@
+<div id="administration-container">
+  <ul class="myrtea-module-navbar">
+    <li [ngClass]="{ 'selected' : currentState === administrationState.USERADMINISTRATION }" routerLink="/administration/users">
+      {{ 'settings.user.label' | translate }}
+    </li>
+    <li [ngClass]="{ 'selected' : currentState === administrationState.SECURITYGROUPADMINISTRATION }" routerLink="/administration/security-groups">
+      {{ 'settings.group.label' | translate }}
+    </li>
+  </ul>
+  <div id="administration-body">
+    <ng-container [ngSwitch]="currentState">
+      <app-user-list *ngSwitchCase="administrationState.USERADMINISTRATION"></app-user-list>
+      <app-security-group-list *ngSwitchCase="administrationState.SECURITYGROUPADMINISTRATION"></app-security-group-list>
+    </ng-container>
+  </div>
+</div>

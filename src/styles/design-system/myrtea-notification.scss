@@ -1,0 +1,24 @@
+@import 'src/styles/colors.scss';
+
+@mixin styleNotification($color) {
+  mat-icon:first-child {
+    color: $color;
+    margin-right: .5em;
+  }
+}
+
+.error {
+  @include styleNotification($red);
+}
+
+.information {
+  @include styleNotification($thumbs-up);
+}
+
+.warning {
+  @include styleNotification($jaffa);
+}
+
+.check {
+  @include styleNotification($pastel-green);
+}

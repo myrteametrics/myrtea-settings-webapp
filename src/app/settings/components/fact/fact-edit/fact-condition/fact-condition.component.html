@@ -1,0 +1,84 @@
+<ng-container *ngIf="conditionFormGroup">
+  <ng-container *ngTemplateOutlet="conditionRow; context: { level: 0, conditionForm: conditionFormGroup }">
+  </ng-container>
+</ng-container>
+
+<ng-template #conditionRow let-level="level" let-index="index" let-conditionForm="conditionForm">
+  <ng-container *ngIf="isGroupOperator(conditionForm.get('operator').value)">
+    <div class="mb-1 form-row" [formGroup]="conditionForm">
+      <div class="col-md-2">
+        <select class="form-control custom-select myrtea-select" formControlName="operator">
+          <option value=""></option>
+          <optgroup label="{{ 'settings.fact.attribute.condition.groupoperators' | translate }}">
+            <option *ngFor="let op of groupOperators" [value]="op">{{ op }}
+            </option>
+          </optgroup>
+          <optgroup label="{{ 'settings.fact.attribute.condition.leafoperators' | translate }}">
+            <option *ngFor="let op of leafOperators" [value]="op">{{ op }}
+            </option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div *ngIf="conditionForm.get('operator').value === 'if'">
+        <input formControlName="expression" type="text" class="form-control myrtea-text-input">
+      </div>
+
+      <div *ngIf="!conditionForm.disabled">
+        <mat-icon class="myrtea-delete-button" [svgIcon]="icons.TRASH.name" (click)="deleteCondition(conditionForm, index)">
+        </mat-icon>
+      </div>
+      <div>
+        <div class="myrtea-add-section" (click)="addSubCondition(conditionForm)" *ngIf="!conditionForm.disabled">
+          <mat-icon [svgIcon]="icons.ADD_CIRCLE.name">
+          </mat-icon>
+          <span class="px-2">{{ 'settings.fact.action.addcondition.label' | translate }}</span>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let cond of conditionForm.get('fragments').controls; let i = index" class="myrtea-nested-row">
+      <ng-container *ngTemplateOutlet="conditionRow; context: { level: level + 1, index: i, conditionForm: cond }">
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!isGroupOperator(conditionForm.get('operator').value)">
+    <div class="mb-1 form-row" [formGroup]="conditionForm">
+      <div class="col-md-2">
+        <select class="form-control custom-select myrtea-select" formControlName="operator">
+          <option value=""></option>
+          <optgroup label="{{ 'settings.fact.attribute.condition.groupoperators' | translate }}">
+            <option *ngFor="let op of groupOperators" [value]="op">{{ op }}</option>
+          </optgroup>
+          <optgroup label="{{ 'settings.fact.attribute.condition.leafoperators' | translate }}">
+            <option *ngFor="let op of leafOperators" [value]="op">{{ op }}</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="col-md-2" *ngIf="conditionForm.get('term')">
+        <ng-container [ngSwitch]="conditionForm.get('operator').value">
+          <ng-container *ngSwitchCase="'script'">
+            <input type="text" class="form-control myrtea-text-input" formControlName="term" required>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <select class="custom-select myrtea-select" formControlName="term" required>
+              <option value=""></option>
+              <option *ngFor="let modelTerm of modelTerms" [value]="modelTerm.name">{{ modelTerm.name }}</option>
+            </select>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="col-md-2" *ngIf="conditionForm.get('value')">
+        <input type="text" class="form-control myrtea-text-input" formControlName="value" required>
+      </div>
+      <div class="col-md-2" *ngIf="conditionForm.get('value2')">
+        <input type="text" class="form-control myrtea-text-input" formControlName="value2" required>
+      </div>
+      <div class="col-md-1">
+        <mat-icon class="myrtea-delete-button" [svgIcon]="icons.TRASH.name" (click)="deleteCondition(conditionForm, index)"
+          *ngIf="!conditionForm.disabled">
+        </mat-icon>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

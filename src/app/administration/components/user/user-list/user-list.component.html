@@ -1,0 +1,15 @@
+<div class="myrtea-administraion-container">
+  <div class="myrtea-administration-header">
+    <div class="search-container">
+      <input #userInputSearchUser type="text" placeholder="{{ 'settings.shared.action.search' | translate }}"
+        (input)="searchUser(userInputSearchUser.value)">
+      <mat-icon [svgIcon]="icons.SEARCH.name"></mat-icon>
+    </div>
+    <button class="myrtea-action" routerLink="/administration/users/new">
+      <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+      <span>{{ 'settings.user.action.create.label' | translate }}</span>
+    </button>
+  </div>
+  <app-settings-table [data]="tableSettingsData" emptyMessage="{{ 'settings.user.component.table.empty' | translate}}">
+  </app-settings-table>
+</div>

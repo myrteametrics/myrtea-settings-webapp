@@ -1,0 +1,229 @@
+<div class="myrtea-settings-page">
+  <app-settings-control-bar class="myrtea-settings-page-control-bar"
+    controlTitle="{{ creationMode ? 'settings.situation.title.create' : 'settings.situation.title.edit' | translate : { name:  situation?.name} }}"
+    (return)="return()" (cancel)="cancel()" (delete)="deleteSituation()" (save)="saveSituation()" [noMoreOptions]="creationMode"
+    [updateModifiedState]="situationIsModifiedAndReady()">
+  </app-settings-control-bar>
+  <div class="myrtea-settings-page-body">
+    <form [formGroup]="formSituation">
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.general.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.general.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-2 form-group" *ngIf="!creationMode">
+              <label class="myrtea-label" for="situation-id">
+                {{ 'settings.shared.attribute.id.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.id.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input type="text" id="situation-id" class="form-control myrtea-text-input" formControlName="id">
+            </div>
+            <div [ngClass]="{'col-md-4' : !creationMode, 'col-md-6': creationMode}" class="form-group">
+              <label class="myrtea-label" for="situation-name">
+                {{ 'settings.shared.attribute.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.shared.attribute.name.label' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+              </label>
+              <input type="text" id="situation-name" class="form-control myrtea-text-input" formControlName="name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="pl-2 col-md-4">
+              <div class="custom-control custom-switch myrtea-switch">
+                <input type="checkbox" class="custom-control-input" id="istemplate" formControlName="isTemplate">
+                <label class="custom-control-label" for="istemplate">
+                  {{ 'settings.situation.attribute.istemplate.label' | translate }}
+                  <mat-icon matTooltip="{{ 'settings.situation.attribute.istemplate.help' | translate }}" matTooltipPosition="below"
+                    [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                  </mat-icon>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.calendar.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.calendar.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-4 form-group">
+              <label class="myrtea-label" for="calendar">
+                {{ 'settings.situation.attribute.calendar.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.situation.attribute.calendar.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+              <select id="calendar" class="custom-select myrtea-select" formControlName="calendar">
+                <option value=""></option>
+                <option *ngFor="let calendar of calendars" [value]="calendar.id">{{ calendar.id }} - {{ calendar.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.parameters.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.parameters.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-2">
+              <label class="myrtea-label" for="form-control-parameters-key">
+                {{ 'settings.situation.attribute.parameters.key.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.situation.attribute.parameters.key.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="myrtea-label" for="form-control-parameters-value">
+                {{ 'settings.situation.attribute.parameters.value.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.situation.attribute.parameters.value.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+          </div>
+          <ng-container *ngFor="let fieldForm of formSituation.get('parameters')['controls']; let i = index">
+            <div class="mb-1 form-row" [formGroup]="fieldForm">
+              <div class="col-md-2">
+                <input type="text" id="form-control-parameters-key" class="form-control myrtea-text-input" formControlName="key">
+              </div>
+              <div class="col-md-6">
+                <input type="text" id="form-control-parameters-value" class="form-control myrtea-text-input" formControlName="value">
+              </div>
+              <div>
+                <div class="pl-0 myrtea-add-section" (click)="deleteParameter(fieldForm, i)">
+                  <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="pl-0 myrtea-add-section" (click)="addNewParameter(formSituation)">
+            <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+            <span class="px-2">{{ 'settings.situation.action.addparameter.label' | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group" *ngIf="formSituation.get('isTemplate').value">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.instances.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.instances.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <app-situation-instance-composition #instanceComposition *ngIf="situation" [creationMode]="creationMode" [situation]="situation" [calendars]="calendars"
+            (isDirtyEmitter)="isDirty = $event">
+          </app-situation-instance-composition>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.facts.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.facts.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <app-fact-composition #factComposition *ngIf="situation && factIdsInSituation" (isDirtyEmitter)="isDirty = $event"
+            [factIdsInElement]="factIdsInSituation">
+          </app-fact-composition>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.expressionfact.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.expressionfact.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <div class="form-row">
+            <div class="col-md-2">
+              <label class="myrtea-label" for="form-control-expressionfact-name">
+                {{ 'settings.situation.attribute.expressionfact.name.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.situation.attribute.expressionfact.name.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="myrtea-label" for="form-control-expressionfact-expression">
+                {{ 'settings.situation.attribute.expressionfact.expression.label' | translate }}
+                <mat-icon matTooltip="{{ 'settings.situation.attribute.expressionfact.expression.help' | translate }}" matTooltipPosition="below"
+                  [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+                </mat-icon>
+              </label>
+            </div>
+          </div>
+          <ng-container *ngFor="let fieldForm of formSituation.get('expressionFacts')['controls']; let i = index">
+            <div class="mb-1 form-row" [formGroup]="fieldForm">
+              <div class="col-md-2">
+                <input type="text" id="form-control-expressionfact-name" class="form-control myrtea-text-input" formControlName="name">
+              </div>
+              <div class="col-md-6">
+                <input type="text" id="form-control-expressionfact-expression" class="form-control myrtea-text-input" formControlName="expression">
+              </div>
+              <div>
+                <div class="pl-0 myrtea-add-section" (click)="deleteExpressionFact(fieldForm, i)">
+                  <mat-icon [svgIcon]="icons.TRASH.name" class="myrtea-delete-icon"></mat-icon>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <div class="pl-0 myrtea-add-section" (click)="addNewExpressionFact(formSituation)">
+            <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+            <span class="px-2">{{ 'settings.situation.action.addexpressionfact.label' | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.rules.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.rules.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <app-situation-business-rule-composition #ruleComposition *ngIf="situation" [creationMode]="creationMode" [situation]="situation"
+            (isDirtyEmitter)="isDirty = $event">
+          </app-situation-business-rule-composition>
+        </div>
+      </div>
+
+      <div class="myrtea-form-section form-group">
+        <div class="h2 myrtea-form-section-title">
+          {{ 'settings.situation.section.groups.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.situation.section.groups.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+          </mat-icon>
+        </div>
+        <div class="myrtea-form-section-content">
+          <app-security-group-composition #groupComposition *ngIf="situation" (isDirtyEmitter)="isDirty = $event"
+            [groupIdsInElement]="situation.groups">
+          </app-security-group-composition>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

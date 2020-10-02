@@ -1,0 +1,75 @@
+@import 'src/styles/colors.scss';
+
+.multiple-selection-search {
+  width: 60%;
+  padding: 16px 0 0 16px;
+}
+
+.multiple-selection-list {
+  width: 60%;
+  border: solid 1px $dove-gray;
+  border-radius: 2px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .element {
+    border: solid $dove-gray;
+    border-width: 0 0 1px 0;
+    padding: 12px 8px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    p {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.35;
+      letter-spacing: 0.18px;
+      text-align: left;
+      color: $ship-gray;
+      width: 90%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    input {
+      cursor: pointer;
+    }
+
+    mat-icon {
+      color: $primary;
+      margin-right: 8px;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+.multiple-selection-selected {
+  width: calc(40% - 16px);
+  margin-left: 16px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  p {
+    margin: 0;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .multiple-selection-title {
+    display: flex;
+    justify-content: space-between;
+
+    .selected-text {
+      color: $dove-gray;
+      margin-right: 8px;
+    }
+  }
+}

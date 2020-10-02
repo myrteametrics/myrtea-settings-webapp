@@ -1,0 +1,12 @@
+<div class="myrtea-input-container">
+  <label class="myrtea-label">{{ data.label | translate }}</label>
+  <input #userInput type="text" (input)="userInputChange()"
+    class="form-control myrtea-text-input">
+  <div class="suggestions"
+    *ngIf="suggestionVisibility && (suggestions.length !== 0)">
+    <p *ngFor="let element of suggestions" (click)="onSelect(element.objectId)">
+      <mat-icon [svgIcon]="element.icon" *ngIf="element.icon"></mat-icon>
+      <span>{{ element.content }}</span>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="myrtea-list-container">
+  <div class="myrtea-list-header">
+    <div class="search-container">
+      <input #userInputSearchScheduler type="text" placeholder="{{ 'settings.shared.action.search' | translate }}"
+        (input)="searchScheduler(userInputSearchScheduler.value)">
+      <mat-icon [svgIcon]="icons.SEARCH.name"></mat-icon>
+    </div>
+    <button class="myrtea-action" routerLink="/settings/schedulers/new">
+      <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+      <span>{{ 'settings.schedulerjob.action.create.label' | translate }}</span>
+    </button>
+  </div>
+  <div class="myrtea-list-body">
+    <app-settings-table [data]="tableSettingsData" emptyMessage="{{ 'settings.schedulerjob.component.table.empty' | translate }}">
+    </app-settings-table>
+  </div>
+</div>

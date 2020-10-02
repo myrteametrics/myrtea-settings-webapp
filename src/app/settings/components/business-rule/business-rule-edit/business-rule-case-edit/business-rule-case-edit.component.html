@@ -1,0 +1,43 @@
+<div class="myrtea-form-section form-group">
+  <div class="h2 myrtea-form-section-title">
+    {{ 'settings.businessrulecase.section.condition.label' | translate }}
+    <mat-icon matTooltip="{{ 'settings.businessrulecase.section.condition.help' | translate }}" matTooltipPosition="below"
+      [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon">
+    </mat-icon>
+  </div>
+  <form [formGroup]="caseForm" class="myrtea-form">
+    <div class="form-row myrtea-form-group">
+      <div class="col-5">
+        <label class="myrtea-label" for="conditionName">{{ 'settings.shared.attribute.name.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.shared.attribute.name.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </label>
+        <input class="form-control myrtea-text-input" type="text" id="conditionName" formControlName="name">
+      </div>
+    </div>
+    <div class="form-row myrtea-form-group">
+      <div class="col-5">
+        <label class="myrtea-label" for="conditionExpression">{{ 'settings.businessrulecase.attribute.condition.label' | translate }}
+          <mat-icon matTooltip="{{ 'settings.businessrulecase.attribute.condition.help' | translate }}" matTooltipPosition="below"
+            [svgIcon]="icons.INFORMATION_OUTLINED.name" class="myrtea-tooltip-icon"></mat-icon>
+        </label>
+        <input class="form-control myrtea-text-input" type="text" id="conditionExpression" formControlName="condition">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="myrtea-form-section form-group">
+  <div class="h2 myrtea-form-section-title">
+    {{ 'settings.businessruleaction.title.composition' | translate }}
+    <mat-icon matTooltip="Actions tooltip" matTooltipPosition="below" [svgIcon]="icons.INFORMATION_OUTLINED.name"
+      class="myrtea-tooltip-icon">
+    </mat-icon>
+  </div>
+  <app-settings-table [data]="actionTableSettingsData" emptyMessage="{{ 'settings.businessruleaction.component.table.empty' | translate }}">
+  </app-settings-table>
+  <button class="myrtea-action" (click)="displayCreateAction()">
+    <mat-icon [svgIcon]="icons.ADD_CIRCLE.name"></mat-icon>
+    {{ 'settings.businessruleaction.action.create.label' | translate }}
+  </button>
+</div>
