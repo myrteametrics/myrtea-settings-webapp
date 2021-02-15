@@ -1,4 +1,9 @@
 {
+  "login": {
+    "connection": "Connexion",
+    "login": "Votre login",
+    "password": "Votre mot de passe"
+  },
   "sidenav": {
     "administration": {
       "label": "Administration",

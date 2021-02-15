@@ -12,7 +12,7 @@ export class SchedulerService extends ResourceService<SchedulerJob> {
     public networkService: NetworkService
   ) {
     super(
-      '/engine/scheduler/jobs/',
+      '/engine/scheduler/jobs',
       networkService
     );
   }
